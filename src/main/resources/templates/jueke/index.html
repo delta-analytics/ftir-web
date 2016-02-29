@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                <h2 class="sub-header">Jueke Settings</h2>
+
+                <form class="form-horizontal" th:action="@{/jueke/}" th:object="${juekeParameterDto}" method="post">
+                    <div class="form-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve1Enabled}"/> Valve1
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve2Enabled}"/> Valve2
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve3Enabled}"/> Valve 3
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve4Enabled}"/> Valve 4
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve5Enabled}"/> Valve 5
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve6Enabled}"/> Valve 6
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve7Enabled}"/> Valve 7
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" th:field="*{valve8Enabled}"/> Valve 8
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button id="disablePump" class="btn btn-default" type="button">Disable Pump</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPumpSpeed" class="col-sm-2 control-label">Pumpspeed</label>
+                            <input id="inputPumpSpeed" type="number" min="0" max="100" step="0.01"
+                                   th:field="*{pumpSpeed}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPressure" class="col-sm-2 control-label">Pressure</label>
+                        <input id="inputPressure" type="number" min="0" max="100" step="0.01" th:field="*{pressure}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTemperature" class="col-sm-2 control-label">Temperature</label>
+                        <input id="inputTemperature" type="number" min="0" max="100" step="0.01" th:field="*{temperature}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/jueke.js" th:src="@{/js/jueke.js}"></script>
+</div>
+</body>
+</html>

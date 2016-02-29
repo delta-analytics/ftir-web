@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="../../favicon.ico"/>
+
+    <title>Ftir-Web</title>
+
+    <!-- Bootstrap core CSS -->
+    <div th:include="js :: css"></div>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Ftir-Web</a>
+                </div>
+            </div>
+            <div class="col-sm-9 col-md-10 pull-left">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a
+                                th:href="@{/}">Home</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/measurements' ? 'active':''}"><a
+                                th:href="@{/measurements/}">Measurements</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/measuresreference' ? 'active':''}">
+                            <a
+                                    th:href="@{/measurereference}">Measurereference</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/jueke/' ? 'active':''}"><a
+                                th:href="@{/jueke/}">Jueke</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/users') ? 'active':''}"><a
+                                th:href="@{/users/users}">Users</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div th:include="js :: js"></div>
+<div class="container">
+    <div layout:fragment="content"></div>
+</div>
+
+</body>
+</html>

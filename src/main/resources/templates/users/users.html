@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                <h2 class="sub-header">Users</h2>
+                <a id="createUserBtn" class="btn btn-default" type="button" data-toggle="modal"
+                   data-target="#createUserModal"> Create new User </a>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Account</th>
+                            <th>Active</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${allUsers}">
+                            <td th:text="${user.firstname}"></td>
+                            <td th:text="${user.lastname}"></td>
+                            <td th:text="${user.account}"></td>
+                            <td th:text="${user.enabled}"></td>
+                            <td th:text="${user.createdAt}"></td>
+                            <td><a id="editUserBtn"
+                                   class="glyphicon glyphicon-edit" href="#" title="Edit"> </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/users.js" th:src="@{/js/users.js}"></script>
+</div>
+</body>
+</html>

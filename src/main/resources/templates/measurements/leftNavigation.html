@@ -1,0 +1,9 @@
+<ul class="nav nav-sidebar">
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/measurements/' ? 'active':''}"><a
+            th:href="@{/measurements/}">Measurements<span class="sr-only">(current)</span></a></li>
+</ul>
+
+<ul class="nav nav-sidebar">
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/measurements/parameter' ? 'active':''}"><a
+            th:href="@{/measurements/parameter}">Parameter<span class="sr-only">(current)</span></a></li>
+</ul>

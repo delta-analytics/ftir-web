@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+ftir-web-gui.iml
+target
+*.log
+logs
