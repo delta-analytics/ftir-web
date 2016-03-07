@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     $("#createUserModal").on("show.bs.modal", function (e) {
         $(this).find(".modal-content").load("newUser");
     });
@@ -7,7 +7,9 @@ $(function() {
 
     });
     $("#editUserModal").on("show.bs.modal", function (e) {
-        $(this).find(".modal-content").load("editUser");
+        var button = $(e.relatedTarget);
+        var userId = button.data('user-id');
+        $(this).find(".modal-content").load("editUser/" + userId);
     });
 
     $('table').tablesorter();

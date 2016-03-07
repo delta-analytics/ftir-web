@@ -34,6 +34,13 @@ public class UsersController {
         return "redirect:/users/users";
     }
 
+    @RequestMapping(value = "/editUser/{id}", method = RequestMethod.POST)
+    public String editUser(User user) {
+        logger.info("editUser " + user.toString());
+        new UserRepository().createOrUpdate(user);
+        return "redirect:/users/users";
+    }
+
     @RequestMapping("/editUser/{id}")
     public String editUser(@PathVariable long id, Model model) {
         User user = new UserRepository().read(id);

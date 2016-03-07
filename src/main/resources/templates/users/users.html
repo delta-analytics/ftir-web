@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:visibility="http://www.w3.org/1999/xhtml">
 <body>
 <div layout:fragment="content">
     <div class="container-fluid">
@@ -33,8 +34,7 @@
                             <td th:text="${user.account}"></td>
                             <td th:text="${user.enabled}"></td>
                             <td th:text="${user.createdAt}"></td>
-                            <td><a id="editUserBtn"
-                                   class="glyphicon glyphicon-edit" href="#" title="Edit"> </a>
+                            <td><a id="editUserBtn" type="button" data-toggle="modal" th:attr="data-user-id=${user.id}" class="glyphicon glyphicon-edit" data-target="#editUserModal" title="Edit"> </a>
                             </td>
                         </tr>
                         </tbody>
