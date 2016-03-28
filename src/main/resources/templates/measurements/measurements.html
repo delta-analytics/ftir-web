@@ -30,7 +30,7 @@
                         <tr th:each="measurement : ${allMeasurements}">
                             <td th:text="${measurement.createdAt}"></td>
                             <td th:text="${measurement.finishedAt}"></td>
-                            <td th:text="${measurement.brukerStateEnum}"></td>
+                            <td th:text="${measurement.brukerStateEnumDto}"></td>
                             <td th:text="${measurement.filename}"></td>
                             <td th:text="${measurement.error}"></td>
                         </tr>

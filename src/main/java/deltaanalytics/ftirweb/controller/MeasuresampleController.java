@@ -25,7 +25,7 @@ public class MeasuresampleController {
     @RequestMapping("/")
     public String index(Model model) {
         ResponseEntity<List<MeasureSampleDto>> rateResponse =
-                restTemplate.exchange("https://bitpay.com/api/rates",
+                restTemplate.exchange("http://localhost:50000/measureSamples",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<MeasureSampleDto>>() {
                         });
         List<MeasureSampleDto> allMeasurements = rateResponse.getBody();
