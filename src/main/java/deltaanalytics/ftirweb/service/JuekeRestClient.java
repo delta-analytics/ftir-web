@@ -1,77 +1,66 @@
 package deltaanalytics.ftirweb.service;
 
 import deltaanalytics.ftirweb.dto.JuekeStatusDto;
+import deltaanalytics.ftirweb.dto.JuekeValvesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 
-@Service
+@Component
 public class JuekeRestClient {
     private RestOperations restTemplate;
+    @Value("${jueke-service.host}")
     private String host;
+    @Value("${jueke-service.port}")
     private int port;
+    @Value("${jueke-service.status.url}")
     private String statusUrl;
+    @Value("${jueke-service.pump.disable.url}")
     private String pumpDisableUrl;
+    @Value("${jueke-service.pump.speed.url}")
     private String pumpSpeedUrl;
-    private String temperatureSpeedUrl;
+    @Value("${jueke-service.temperature.url}")
+    private String temperatureUrl;
+    @Value("${jueke-service.pressure.regulation.start.url}")
     private String pressureRegulationStartUrl;
+    @Value("${jueke-service.pressure.regulation.stop.url}")
     private String pressuereRegulationStopUrl;
+    @Value("${jueke-service.pressure.url}")
     private String pressureUrl;
+    @Value("${jueke-service.valves.url}")
     private String valvesUrl;
 
     public JuekeStatusDto getStatus() {
         return restTemplate.getForObject(hostWithPort() + statusUrl, JuekeStatusDto.class);
     }
 
-    @Value("${jueke-service.host}")
-    public void setHost(String host) {
-        this.host = host;
+    public void pumpDisable() {
+        restTemplate.postForLocation(hostWithPort() + pumpDisableUrl, null);
     }
 
-    @Value("${jueke-service.port}")
-    public void setPort(int port) {
-        this.port = port;
+    public void pumpSpeed(int speed) {
+        restTemplate.postForLocation(hostWithPort() + pumpSpeedUrl + "/" + speed, null);
     }
 
-    @Value("${jueke-service.status.url}")
-    public void setStatusUrl(String statusUrl) {
-        this.statusUrl = statusUrl;
+    public void temperature(int temperature) {
+        restTemplate.postForLocation(hostWithPort() + temperatureUrl + "/" + temperature, null);
     }
 
-    @Value("${jueke-service.pump.disable.url}")
-    public void setPumpDisableUrl(String pumpDisableUrl) {
-        this.pumpDisableUrl = pumpDisableUrl;
+    public void pressureRegulationStart() {
+        restTemplate.postForLocation(hostWithPort() + pressureRegulationStartUrl, null);
     }
 
-    @Value("${jueke-service.pump.speed.url}")
-    public void setPumpSpeedUrl(String pumpSpeedUrl) {
-        this.pumpSpeedUrl = pumpSpeedUrl;
+    public void pressureRegulationStop() {
+        restTemplate.postForLocation(hostWithPort() + pressuereRegulationStopUrl, null);
     }
 
-    @Value("${jueke-service.temperature.speed.url}")
-    public void setTemperatureSpeedUrl(String temperatureSpeedUrl) {
-        this.temperatureSpeedUrl = temperatureSpeedUrl;
+    public void pressure(int pressure) {
+        restTemplate.postForLocation(hostWithPort() + pressureUrl + "/" + pressure, null);
     }
 
-    @Value("${jueke-service.pressure.regulation.start.url}")
-    public void setPressureRegulationStartUrl(String pressureRegulationStartUrl) {
-        this.pressureRegulationStartUrl = pressureRegulationStartUrl;
-    }
-
-    @Value("${jueke-service.pressure.regulation.stop.url}")
-    public void setPressuereRegulationStopUrl(String pressuereRegulationStopUrl) {
-        this.pressuereRegulationStopUrl = pressuereRegulationStopUrl;
-    }
-
-    @Value("${jueke-service.pressure.url}")
-    public void setPressureUrl(String pressureUrl) {
-        this.pressureUrl = pressureUrl;
-    }
-
-    @Value("${jueke-service.valves.url}")
-    public void setValvesUrl(String valvesUrl) {
-        this.valvesUrl = valvesUrl;
+    public void valves(JuekeValvesDto juekeValvesDto) {
+        restTemplate.postForLocation(hostWithPort() + valvesUrl, juekeValvesDto);
     }
 
     @Autowired
@@ -80,6 +69,6 @@ public class JuekeRestClient {
     }
 
     private String hostWithPort() {
-        return "http://" + host + ":" + port;
+        return host + ":" + port;
     }
 }

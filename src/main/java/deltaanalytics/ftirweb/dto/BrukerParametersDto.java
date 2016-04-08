@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-public class BrukerParametersDto{
+public class BrukerParametersDto {
     private long id;
     private MeasureSampleDto measureSample;
     private boolean currentDefault;
