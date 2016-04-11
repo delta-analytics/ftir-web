@@ -39,11 +39,8 @@
                     <ul class="nav navbar-nav">
                         <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a
                                 th:href="@{/}">Home</a></li>
-                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/measurements' ? 'active':''}"><a
-                                th:href="@{/measurements/}">Measurements</a></li>
-                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/measuresreference' ? 'active':''}">
-                            <a
-                                    th:href="@{/measurereference}">Measurereference</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/bruker/') ? 'active':''}"><a
+                                th:href="@{/bruker/}">Bruker</a></li>
                         <li th:classappend="${#httpServletRequest.getRequestURI() == '/jueke/' ? 'active':''}"><a
                                 th:href="@{/jueke/}">Jueke</a></li>
                         <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/users') ? 'active':''}"><a

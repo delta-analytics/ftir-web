@@ -1,7 +1,6 @@
 package deltaanalytics.ftirweb.controller;
 
 import deltaanalytics.ftirweb.dto.JuekeStatusDto;
-import deltaanalytics.ftirweb.dto.JuekeValvesDto;
 import deltaanalytics.ftirweb.service.JuekeRestClient;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,14 +52,6 @@ public class JuekeControllerTest {
         juekeController.setPressure(pressure);
 
         verify(juekeRestClient).pressure(pressure);
-    }
-
-    @Test
-    public void setValves() {
-        JuekeValvesDto juekeValvesDto = new JuekeValvesDto();
-        juekeController.setValves(juekeValvesDto);
-
-        verify(juekeRestClient).valves(juekeValvesDto);
     }
 
     @Test

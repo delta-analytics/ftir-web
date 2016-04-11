@@ -375,7 +375,7 @@ public class JuekeStatusDto {
         return "JuekeStatus{" +
                 "id=" + id +
                 ", statusDateTime=" + statusDateTime +
-                ", start=" + start +
+                ", startMeasurement=" + start +
                 ", numberOfBytes=" + numberOfBytes +
                 ", controllerStatus=" + controllerStatus +
                 ", statusOfPump=" + statusOfPump +

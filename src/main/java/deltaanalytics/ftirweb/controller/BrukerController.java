@@ -20,15 +20,25 @@ public class BrukerController {
     @Autowired
     private BrukerRestClient brukerRestClient;
 
+    @RequestMapping("/")
+    public String index(Model model){
+        return "bruker/index";
+    }
     @RequestMapping("/measurereference")
-    public String measureReferenceIndex() {
+    public String measureReferences() {
         return "measurereference";
     }
 
     @RequestMapping("/measureSamples")
-    public String index(Model model) {
+    public String measureSamples(Model model) {
         model.addAttribute("allMeasurements", brukerRestClient.getMeasureSamples());
-        return "measurements/measurements";
+        return "bruker/bruker";
+    }
+
+    @RequestMapping(value = "/parameter", method = RequestMethod.POST)
+    public String saveParameter(BrukerParametersDto brukerParameters) {
+        brukerRestClient.setDefaults(brukerParameters);
+        return "bruker/parameter";
     }
 
     @RequestMapping("/parameter")
@@ -41,18 +51,12 @@ public class BrukerController {
             logger.error("", e);
         }
         model.addAttribute("brukerParameters", brukerParameters);
-        return "measurements/parameter";
-    }
-
-    @RequestMapping(value = "/parameter", method = RequestMethod.POST)
-    public String saveParameter(BrukerParametersDto brukerParameters) {
-        brukerRestClient.setDefaults(brukerParameters);
-        return "measurements/parameter";
+        return "bruker/parameter";
     }
 
     @RequestMapping(value = "/start", method = RequestMethod.POST)
-    public String start() {
+    public String startMeasurement() {
         brukerRestClient.startMeasurement();
-        return "measurements/";
+        return "bruker/";
     }
 }

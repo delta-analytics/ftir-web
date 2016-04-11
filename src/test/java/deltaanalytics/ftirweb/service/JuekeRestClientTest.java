@@ -2,7 +2,6 @@ package deltaanalytics.ftirweb.service;
 
 import deltaanalytics.FtirWebGuiApplication;
 import deltaanalytics.ftirweb.dto.JuekeStatusDto;
-import deltaanalytics.ftirweb.dto.JuekeValvesDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -103,11 +102,19 @@ public class JuekeRestClientTest {
     }
 
     @Test
-    public void valves() throws Exception {
-        JuekeValvesDto juekeValvesDto = new JuekeValvesDto();
-        juekeRestClient.valves(juekeValvesDto);
+    public void enableValve() throws Exception {
+        int valve = 1;
+        juekeRestClient.enableValve(valve);
 
-        verify(restOperations).postForLocation(buildCompleteUrl(valvesUrl), juekeValvesDto);
+        verify(restOperations).postForLocation(buildCompleteUrl(valvesUrl + valve + "?state=enable"), null);
+    }
+
+    @Test
+    public void disableValve() throws Exception {
+        int valve = 2;
+        juekeRestClient.disableValve(valve);
+
+        verify(restOperations).postForLocation(buildCompleteUrl(valvesUrl + valve + "?state=disable"), null);
     }
 
     private String buildCompleteUrl(String actionUrl) {

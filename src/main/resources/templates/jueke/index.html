@@ -11,31 +11,31 @@
 
                 <h2 class="sub-header">Jueke Settings</h2>
 
-                <form class="form-horizontal" th:action="@{/jueke/}" th:object="${juekeParameterDto}" method="post">
+                <form action="#" class="form-horizontal" th:object="${juekeStatusDto}" method="post">
                     <div class="form-group" data-toggle="buttons">
                         <label class="btn btn-primary active">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve1Enabled}"/> Valve1
+                            <input type="checkbox" th:field="*{valveStatus1}"/> Valve1
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve2Enabled}"/> Valve2
+                            <input type="checkbox" th:field="*{valveStatus2}"/> Valve2
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve3Enabled}"/> Valve 3
+                            <input type="checkbox" th:field="*{valveStatus3}"/> Valve 3
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve4Enabled}"/> Valve 4
+                            <input type="checkbox" th:field="*{valveStatus4}"/> Valve 4
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve5Enabled}"/> Valve 5
+                            <input type="checkbox" th:field="*{valveStatus5}"/> Valve 5
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve6Enabled}"/> Valve 6
+                            <input type="checkbox" th:field="*{valveStatus6}"/> Valve 6
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve7Enabled}"/> Valve 7
+                            <input type="checkbox" th:field="*{valveStatus7}"/> Valve 7
                         </label>
                         <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off" th:field="*{valve8Enabled}"/> Valve 8
+                            <input type="checkbox" th:field="*{valveStatus8}"/> Valve 8
                         </label>
                     </div>
                     <div class="form-group">
@@ -43,16 +43,15 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPumpSpeed" class="col-sm-2 control-label">Pumpspeed</label>
-                            <input id="inputPumpSpeed" type="number" min="0" max="100" step="0.01"
-                                   th:field="*{pumpSpeed}"/>
+                            <input th:field="*{pumpPower}" id="inputPumpSpeed" type="number" min="0" max="100" step="0.01"/>
                     </div>
                     <div class="form-group">
                         <label for="inputPressure" class="col-sm-2 control-label">Pressure</label>
-                        <input id="inputPressure" type="number" min="0" max="100" step="0.01" th:field="*{pressure}"/>
+                        <input th:field="*{actualTempHeater}" id="inputPressure" type="number" min="0" max="100" step="0.01"/>
                     </div>
                     <div class="form-group">
                         <label for="inputTemperature" class="col-sm-2 control-label">Temperature</label>
-                        <input id="inputTemperature" type="number" min="0" max="100" step="0.01" th:field="*{temperature}"/>
+                        <input th:field="*{actualPressureCell}" id="inputTemperature" type="number" min="0" max="100" step="0.01"/>
                     </div>
 
                     <div class="form-group">

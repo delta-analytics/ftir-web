@@ -1,7 +1,6 @@
 package deltaanalytics.ftirweb.service;
 
 import deltaanalytics.ftirweb.dto.JuekeStatusDto;
-import deltaanalytics.ftirweb.dto.JuekeValvesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -59,8 +58,12 @@ public class JuekeRestClient {
         restTemplate.postForLocation(hostWithPort() + pressureUrl + "/" + pressure, null);
     }
 
-    public void valves(JuekeValvesDto juekeValvesDto) {
-        restTemplate.postForLocation(hostWithPort() + valvesUrl, juekeValvesDto);
+    public void enableValve(int valve) {
+        restTemplate.postForLocation(hostWithPort() + valvesUrl + valve + "?state=enable", null);
+    }
+
+    public void disableValve(int valve) {
+        restTemplate.postForLocation(hostWithPort() + valvesUrl + valve + "?state=disable", null);
     }
 
     @Autowired
