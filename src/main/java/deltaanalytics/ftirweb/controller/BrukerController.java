@@ -22,6 +22,7 @@ public class BrukerController {
 
     @RequestMapping("/")
     public String index(Model model){
+        model.addAttribute("brukerVersion", brukerRestClient.getVersion());
         return "bruker/index";
     }
     @RequestMapping("/measurereference")

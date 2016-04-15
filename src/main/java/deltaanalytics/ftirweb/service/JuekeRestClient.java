@@ -1,6 +1,8 @@
 package deltaanalytics.ftirweb.service;
 
 import deltaanalytics.ftirweb.dto.JuekeStatusDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -8,6 +10,7 @@ import org.springframework.web.client.RestOperations;
 
 @Component
 public class JuekeRestClient {
+    private static final Logger logger = LoggerFactory.getLogger(JuekeRestClient.class);
     private RestOperations restTemplate;
     @Value("${jueke-service.host}")
     private String host;

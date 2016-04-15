@@ -5,6 +5,8 @@ import deltaanalytics.ftirweb.service.JuekeRestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,52 +21,58 @@ public class JuekeController {
     private JuekeRestClient juekeRestClient;
 
     @RequestMapping("/")
-    public String getParameter(Model model) {
+    public String index(Model model) {
         JuekeStatusDto juekeStatusDto = new JuekeStatusDto();
         model.addAttribute("juekeStatusDto", juekeStatusDto);
         return "jueke/index";
     }
 
     @RequestMapping(value = "/disablePump", method = RequestMethod.POST)
-    public String disablePump() {
+    @ResponseBody
+    public ResponseEntity disablePump() {
         logger.info("disablePump");
         juekeRestClient.pumpDisable();
-        return "jueke/index";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/pump/speed/{speed}", method = RequestMethod.POST)
-    public String setPumpSpeed(@PathVariable("speed") int pumpSpeed) {
+    @ResponseBody
+    public ResponseEntity setPumpSpeed(@PathVariable("speed") int pumpSpeed) {
         logger.info("pump/speed/" + pumpSpeed);
         juekeRestClient.pumpSpeed(pumpSpeed);
-        return "jueke/index";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/pressure/{pressure}", method = RequestMethod.POST)
-    public String setPressure(@PathVariable("pressure") int pressure) {
+    @ResponseBody
+    public ResponseEntity setPressure(@PathVariable("pressure") int pressure) {
         logger.info("pressure/" + pressure);
         juekeRestClient.pressure(pressure);
-        return "jueke/index";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/valves/{valve}/enable", method = RequestMethod.POST)
-    public String enableValve(@PathVariable int valve) {
+    @ResponseBody
+    public ResponseEntity enableValve(@PathVariable int valve) {
         logger.info("enableValve " + valve);
         juekeRestClient.enableValve(valve);
-        return "jueke/index";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/valves/{valve}/disable", method = RequestMethod.POST)
-    public String disableValve(@PathVariable int valve) {
+    @ResponseBody
+    public ResponseEntity disableValve(@PathVariable int valve) {
         logger.info("disableValve " + valve);
         juekeRestClient.disableValve(valve);
-        return "jueke/index";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/temperature/{temperature}", method = RequestMethod.POST)
-    public String setTemperature(@PathVariable("temperature") int temperature) {
+    @ResponseBody
+    public ResponseEntity setTemperature(@PathVariable("temperature") int temperature) {
         logger.info("temperature/" + temperature);
         juekeRestClient.temperature(temperature);
-        return "jueke/index";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/status")
@@ -75,16 +83,18 @@ public class JuekeController {
 
     @RequestMapping(value = "/pressureRegulationStart")
     @ResponseBody
-    public void pressureRegulationStart() {
+    public ResponseEntity pressureRegulationStart() {
         logger.info("pressureRegulationStart");
         juekeRestClient.pressureRegulationStart();
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/pressureRegulationStop")
     @ResponseBody
-    public void pressureRegulationStop() {
+    public ResponseEntity pressureRegulationStop() {
         logger.info("pressureRegulationStop");
         juekeRestClient.pressureRegulationStop();
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @Autowired

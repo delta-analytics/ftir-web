@@ -48,6 +48,10 @@ public class BrukerRestClient {
         restTemplate.postForLocation(hostWithPort() + defaultParameterUrl, brukerParametersDto);
     }
 
+    public String getVersion() {
+        return restTemplate.getForObject(hostWithPort() + versionUrl, String.class);
+    }
+
     public void startMeasurement() {
         restTemplate.postForLocation(hostWithPort() + measureSampleUrl, Void.class);
     }
