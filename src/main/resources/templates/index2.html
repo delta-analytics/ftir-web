@@ -39,12 +39,14 @@
                     <ul class="nav navbar-nav">
                         <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a
                                 th:href="@{/}">Home</a></li>
-                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/bruker/') ? 'active':''}"><a
-                                th:href="@{/bruker/}">Bruker</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/bruker/') ? 'active':''}">
+                            <a
+                                    th:href="@{/bruker/}">Bruker</a></li>
                         <li th:classappend="${#httpServletRequest.getRequestURI() == '/jueke/' ? 'active':''}"><a
                                 th:href="@{/jueke/}">Jueke</a></li>
-                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/users') ? 'active':''}"><a
-                                th:href="@{/users/users}">Users</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/users') ? 'active':''}">
+                            <a
+                                    th:href="@{/users/users}">Users</a></li>
                     </ul>
                 </div>
             </div>

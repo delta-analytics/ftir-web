@@ -1,9 +1,10 @@
 package deltaanalytics.ftirweb.controller;
 
-import deltaanalytics.user.entity.User;
-import deltaanalytics.user.repository.UserRepository;
+import deltaanalytics.ftirweb.entity.User;
+import deltaanalytics.ftirweb.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/users")
 public class UsersController {
     private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
+    private UserRepository userRepository;
 
     @RequestMapping("/users")
     public String index(Model model) {
-        model.addAttribute("allUsers", new UserRepository().findAll());
+        model.addAttribute("allUsers", userRepository.findAll());
         return "users/users";
     }
 
@@ -30,21 +32,26 @@ public class UsersController {
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String createUser(User user) {
         logger.info("createUser " + user.toString());
-        new UserRepository().createOrUpdate(user);
+        userRepository.save(user);
         return "redirect:/users/users";
     }
 
     @RequestMapping(value = "/editUser/{id}", method = RequestMethod.POST)
     public String editUser(User user) {
         logger.info("editUser " + user.toString());
-        new UserRepository().createOrUpdate(user);
+        userRepository.save(user);
         return "redirect:/users/users";
     }
 
     @RequestMapping("/editUser/{id}")
     public String editUser(@PathVariable long id, Model model) {
-        User user = new UserRepository().read(id);
+        User user = userRepository.findOne(id);
         model.addAttribute("user", user);
         return "users/editUser";
+    }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 }
