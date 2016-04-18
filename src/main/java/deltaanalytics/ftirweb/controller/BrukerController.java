@@ -30,10 +30,10 @@ public class BrukerController {
         return "measurereference";
     }
 
-    @RequestMapping("/measureSamples")
+    @RequestMapping("/measuresamples")
     public String measureSamples(Model model) {
-        model.addAttribute("allMeasurements", brukerRestClient.getMeasureSamples());
-        return "bruker/bruker";
+        //model.addAttribute("allMeasurements", brukerRestClient.getMeasureSamples());
+        return "bruker/measurements";
     }
 
     @RequestMapping(value = "/parameter", method = RequestMethod.POST)
