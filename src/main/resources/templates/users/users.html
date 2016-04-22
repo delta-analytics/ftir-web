@@ -34,7 +34,7 @@
                             <td th:text="${user.account}"></td>
                             <td th:text="${user.enabled}"></td>
                             <td th:text="${user.createdAt}"></td>
-                            <td><a id="editUserBtn" type="button" data-toggle="modal" th:attr="data-user-id=${user.id}" class="glyphicon glyphicon-edit" data-target="#editUserModal" title="Edit"> </a>
+                            <td><button type="button" data-toggle="modal" th:attr="data-user-id=${user.id}" class="glyphicon glyphicon-edit usereditbtn" data-target="#editUserModal" title="Edit"> </button>
                             </td>
                         </tr>
                         </tbody>

@@ -2,14 +2,11 @@ $(function () {
     $("#createUserModal").on("show.bs.modal", function (e) {
         $(this).find(".modal-content").load("newUser");
     });
-    $("#editUserBtn").on("click", function (e) {
-        $("#editUserModal").modal();
-
-    });
-    $("#editUserModal").on("show.bs.modal", function (e) {
-        var button = $(e.relatedTarget);
-        var userId = button.data('user-id');
-        $(this).find(".modal-content").load("editUser/" + userId);
+    $(".usereditbtn").on("click", function (e) {
+        var userId = $(this).data('user-id');
+        var editUserModal = $("#editUserModal");
+        $(editUserModal).find(".modal-content").load("editUser/" + userId);
+        editUserModal.modal();
     });
 
     $('table').tablesorter();
