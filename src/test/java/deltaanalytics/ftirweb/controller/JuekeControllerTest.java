@@ -76,4 +76,11 @@ public class JuekeControllerTest {
         verify(juekeRestClient).pressureRegulationStop();
     }
 
+    @Test
+    public void currentstate() {
+        juekeController.currentstate();
+
+        verify(juekeRestClient).getStatus();
+    }
+
 }

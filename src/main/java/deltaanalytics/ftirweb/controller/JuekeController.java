@@ -27,6 +27,17 @@ public class JuekeController {
         return "jueke/index";
     }
 
+    @RequestMapping("/currentstate")
+    @ResponseBody
+    public JuekeStatusDto currentstate() {
+        return juekeRestClient.getStatus();
+    }
+
+    @RequestMapping("/systemstate")
+    public String systemstate() {
+        return "jueke/systemstate";
+    }
+
     @RequestMapping(value = "/disablePump", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity disablePump() {

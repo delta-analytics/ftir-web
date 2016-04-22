@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-sm-3 col-md-2 sidebar" th:include="jueke/leftNavigation">
+
+            </div>
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+                <h2 class="sub-header">Jueke Status</h2>
+
+                <form action="#" class="form-horizontal">
+                    <div class="form-group" data-toggle="buttons">
+                        <label id="valve1State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve1
+                        </label>
+                        <label id="valve2State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve2
+                        </label>
+                        <label id="valve3State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve 3
+                        </label>
+                        <label id="valve4State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve 4
+                        </label>
+                        <label id="valve5State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve 5
+                        </label>
+                        <label id="valve6State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve 6
+                        </label>
+                        <label id="valve7State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve 7
+                        </label>
+                        <label id="valve8State" class="btn btn-primary">
+                            <input type="checkbox"/> Valve 8
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label id="pumpState" class="btn btn-default" type="button">Pump</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="pumpSpeedState" class="col-sm-2 control-label">Pumpspeed</label>
+                        <input id="pumpSpeedState"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="pressureState" class="col-sm-2 control-label">Pressure</label>
+                        <input id="pressureState"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="temperatureState" class="col-sm-2 control-label">Temperature</label>
+                        <input id="temperatureState"/>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/jueke.js" th:src="@{/js/jueke.js}"></script>
+    <script>
+
+        $(document).ready(function(){
+            setInterval(getJuekeState, 1000);
+        });
+    </script>
+</div>
+</body>
+</html>

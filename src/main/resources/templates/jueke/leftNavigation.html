@@ -1,0 +1,6 @@
+<ul class="nav nav-sidebar">
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/jueke/' ? 'active':''}"><a
+            th:href="@{/jueke/}">Overview<span class="sr-only">(current)</span></a></li>
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/jueke/systemstate' ? 'active':''}"><a
+            th:href="@{/jueke/systemstate}">Systemstate<span class="sr-only">(current)</span></a></li>
+</ul>
