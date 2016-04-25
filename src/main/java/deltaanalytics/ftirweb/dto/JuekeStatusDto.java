@@ -1,10 +1,13 @@
 package deltaanalytics.ftirweb.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class JuekeStatusDto {
     private long id;
+    @JsonIgnore
     private LocalDateTime statusDateTime;
     private byte start;
     private byte numberOfBytes;

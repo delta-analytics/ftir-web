@@ -50,17 +50,12 @@ function updateGui(json) {
         $('#valve6State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus7 === true) {
-        $('#valve7State').addClass('glyphicon glyphicon-ok-circle');;
+        $('#valve7State').addClass('glyphicon glyphicon-ok-circle');
     }
     else{
-        $('#valve17State').addClass('glyphicon glyphicon-ban-circle');
+        $('#valve7State').addClass('glyphicon glyphicon-ban-circle');
     }
-    if (json.valveStatus8 === true) {
-        $('#valve8State').addClass('glyphicon glyphicon-ok-circle');
-    }
-    else{
-        $('#valve8State').addClass('glyphicon glyphicon-ban-circle');
-    }
+
     $('#pumpState').removeClass('glyphicon glyphicon-ok-circle');
     $('#pumpState').removeClass('glyphicon glyphicon-ban-circle');
     if(json.statusOfPump === true){
@@ -77,5 +72,19 @@ function updateGui(json) {
 $(function () {
     $('#disablePump').on("click", function () {
         $.post("/jueke/disablePump");
+    });
+    $('#valve6Enable').on("click", function (){
+        $.post("/jueke/valves/6/enable");
+    });
+    $('#valve6Disable').on("click", function (){
+        $.post("/jueke/valves/6/disable");
+    });
+    $("[name='my-checkbox']").bootstrapSwitch();
+    $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        if(state==true){
+            $.post("/jueke/valves/6/enable");
+        }else{
+            $.post("/jueke/valves/6/disable");
+        }
     });
 });

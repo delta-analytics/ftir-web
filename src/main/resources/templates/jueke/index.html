@@ -15,31 +15,11 @@
 
                 <form action="#" class="form-horizontal" th:object="${juekeStatusDto}" method="post">
                     <div class="form-group" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                            <input type="checkbox" th:field="*{valveStatus1}"/> Valve1
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus2}"/> Valve2
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus3}"/> Valve 3
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus4}"/> Valve 4
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus5}"/> Valve 5
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus6}"/> Valve 6
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus7}"/> Valve 7
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" th:field="*{valveStatus8}"/> Valve 8
-                        </label>
+                            <button id="valve6Enable"> Valve6Enable</button>
+                            <button id="valve6Disable"> Valve6Disable </button>
+
                     </div>
+                    <input type="checkbox" name="my-checkbox" checked="checked"/>
                     <div class="form-group">
                         <button id="disablePump" class="btn btn-default" type="button">Disable Pump</button>
                     </div>
