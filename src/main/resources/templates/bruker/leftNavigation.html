@@ -3,8 +3,8 @@
             th:href="@{/bruker/}">Overview<span class="sr-only">(current)</span></a></li>
     <li th:classappend="${#httpServletRequest.getRequestURI() == '/bruker/measuresamples' ? 'active':''}"><a
             th:href="@{/bruker/measuresamples}">Measurements<span class="sr-only">(current)</span></a></li>
-    <li th:classappend="${#httpServletRequest.getRequestURI() == '/measurements/parameter' ? 'active':''}"><a
-            th:href="@{/measurements/parameter}">Parameter<span class="sr-only">(current)</span></a></li>
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/bruker/parameter' ? 'active':''}"><a
+            th:href="@{/bruker/parameter}">Parameter<span class="sr-only">(current)</span></a></li>
 </ul>
 <ul class="nav nav-sidebar">
     <li><a href="">System State</a></li>
