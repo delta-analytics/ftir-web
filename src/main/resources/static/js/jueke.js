@@ -73,12 +73,6 @@ $(function () {
     $('#disablePump').on("click", function () {
         $.post("/jueke/disablePump");
     });
-    $('#valve6Enable').on("click", function (){
-        $.post("/jueke/valves/6/enable");
-    });
-    $('#valve6Disable').on("click", function (){
-        $.post("/jueke/valves/6/disable");
-    });
     $("[name='my-checkbox']").bootstrapSwitch();
     $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
         if(state==true){
