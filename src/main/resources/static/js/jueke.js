@@ -8,6 +8,17 @@ function getJuekeState() {
     });
 }
 
+function getJuekeStateForSettings() {
+    $.ajax({
+        type: 'GET',
+        url: '/jueke/status/',
+        success: function (json) {
+            return json;
+        }
+    });
+}
+
+
 function updateGui(json) {
     for (var i = 1; i <= 8; i++) {
         $('#valve' + i + 'State').removeClass('glyphicon glyphicon-ok-circle');
@@ -16,53 +27,53 @@ function updateGui(json) {
     if (json.valveStatus1 === true) {
         $('#valve1State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve1State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus2 === true) {
         $('#valve2State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve2State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus3 === true) {
         $('#valve3State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve3State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus4 === true) {
         $('#valve4State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve4State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus5 === true) {
         $('#valve5State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve5State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus6 === true) {
         $('#valve6State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve6State').addClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus7 === true) {
         $('#valve7State').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#valve7State').addClass('glyphicon glyphicon-ban-circle');
     }
 
     $('#pumpState').removeClass('glyphicon glyphicon-ok-circle');
     $('#pumpState').removeClass('glyphicon glyphicon-ban-circle');
 
-    if(json.statusOfPump === true){
+    if (json.statusOfPump === true) {
         $('#pumpState').addClass('glyphicon glyphicon-ok-circle');
     }
-    else{
+    else {
         $('#pumpState').addClass('glyphicon glyphicon-ban-circle');
     }
     $('#pumpSpeedState').text(json.pumpPower);
@@ -74,34 +85,25 @@ $(function () {
     $('#disablePump').on("click", function () {
         $.post("/jueke/disablePump");
     });
-    var ventil;
     var juekevalves = "/jueke/valves";
     var enable = "enable";
     var disable = "disable";
-    var slash   =   "/";
-    var ventilno;
-    var ventilsteuern;
+    var slash = "/";
+    var json = getJuekeStateForSettings();
 
-    for (var i = 1; i <= 7; i++) {
-         ventil  = "ventil";
-        ventilno = i.toString();
-        console.log("Nummer:" + ventilno + "integer:" + i.toString());
-        $("input[name="+ventil+ventilno+"]").bootstrapSwitch();
-        console.log("vor on:" + ventil+ventilno);
+    $("input[type=checkbox]").bootstrapSwitch();
 
-        $("input[name="+ventil+ventilno+"]").on('switchChange.bootstrapSwitch',
-            function (event, state) {
-
+    $("input[type=checkbox]").on('switchChange.bootstrapSwitch',
+        function (event, state) {
+            event.preventDefault();
+            var targetId = juekevalves + slash + event.target.id.substring(6, 7);
             if (state == true) {
-                ventilsteuern = juekevalves + slash + ventilno + slash + enable;
-                $.post(ventilsteuern);
-
-                console.log('Ventilpost an:' + ventilsteuern);
+                $.post(targetId + slash + enable);
             } else {
-                ventilsteuern = juekevalves + slash + ventilno + slash + disable;
-                $.post(ventilsteuern);
-                console.log('Ventilpost aus:' + ventilsteuern);
+                $.post(targetId + slash + disable);
             }
+            console.log(targetId);
+            console.log(event);
         });
-    }
+    $('#ventil5').bootstrapSwitch('state', false);
 });

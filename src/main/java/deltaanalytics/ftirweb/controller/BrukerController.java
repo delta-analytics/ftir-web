@@ -39,12 +39,12 @@ public class BrukerController {
     @RequestMapping(value = "/parameter", method = RequestMethod.POST)
     public String saveParameter(BrukerParametersDto brukerParameters) {
         brukerRestClient.setDefaults(brukerParameters);
-        return "bruker/parameter";
+        return "redirect:/bruker/parameter";
     }
 
     @RequestMapping("/parameter")
     public String parameter(Model model) {
-        BrukerParametersDto brukerParameters = null;
+        BrukerParametersDto brukerParameters;
         try {
             brukerParameters = brukerRestClient.getActualDefaults();
         } catch (NoResultException e) {
@@ -55,9 +55,9 @@ public class BrukerController {
         return "bruker/parameter";
     }
 
-    @RequestMapping(value = "/start", method = RequestMethod.POST)
+    @RequestMapping(value = "/measurement/start", method = RequestMethod.POST)
     public String startMeasurement() {
         brukerRestClient.startMeasurement();
-        return "bruker/";
+        return "redirect:/bruker/measurements";
     }
 }

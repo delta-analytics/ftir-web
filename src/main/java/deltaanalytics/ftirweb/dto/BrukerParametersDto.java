@@ -4,7 +4,7 @@ package deltaanalytics.ftirweb.dto;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
+//Todo Nur markierte Attribute, Rest löschen
 public class BrukerParametersDto {
     private long id;
     private MeasureSampleDto measureSample;
