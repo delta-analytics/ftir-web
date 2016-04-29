@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class MeasureReferenceDto {
     private long id;
 
-    private BrukerParametersDto brukerParameters;
+    private MutableBrukerParametersDto brukerParameters;
     private LocalDateTime createdAt;
     private LocalDateTime finishedAt;
     private BrukerStateEnumDto brukerStateEnum;
@@ -23,11 +23,11 @@ public class MeasureReferenceDto {
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public BrukerParametersDto getBrukerParameters() {
+    public MutableBrukerParametersDto getBrukerParameters() {
         return brukerParameters;
     }
 
-    public void setBrukerParameters(BrukerParametersDto brukerParameters) {
+    public void setBrukerParameters(MutableBrukerParametersDto brukerParameters) {
         this.brukerParameters = brukerParameters;
     }
 

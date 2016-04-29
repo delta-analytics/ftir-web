@@ -9,7 +9,7 @@ public class MeasureSampleDto {
     private long id;
 
     private List<MeasureSampleResult> measureSampleResults = new ArrayList<>();
-    private BrukerParametersDto brukerParameters;
+    private MutableBrukerParametersDto brukerParameters;
     private LocalDateTime createdAt;
     private LocalDateTime finishedAt;
     private BrukerStateEnumDto brukerStateEnumDto;
@@ -40,11 +40,11 @@ public class MeasureSampleDto {
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public BrukerParametersDto getBrukerParameters() {
+    public MutableBrukerParametersDto getBrukerParameters() {
         return brukerParameters;
     }
 
-    public void setBrukerParameters(BrukerParametersDto brukerParameters) {
+    public void setBrukerParameters(MutableBrukerParametersDto brukerParameters) {
         this.brukerParameters = brukerParameters;
     }
 
