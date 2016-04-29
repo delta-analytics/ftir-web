@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <body>
 <div layout:fragment="content">
     <div class="container-fluid">
@@ -13,17 +14,49 @@
 
                 <h2 class="sub-header">Jueke Settings</h2>
 
-                <input type="checkbox" name="my-checkbox" checked="checked"/>Valve6
+                <div> <Label>Ventil 7</Label>
+                <input type="checkbox" id="ventil7" name="ventil7" checked="" />
+                </div>
+
+                <div> <Label>Ventil 6</Label>
+                <input type="checkbox" id="ventil6" name="ventil6" checked="" />
+                </div>
+
+                <Label>Ventil 5</Label>
+                <input type="checkbox" id="ventil5" name="ventil5" checked="checked" />
+
+
+                <Label>Ventil 4</Label>
+                <input type="checkbox" id="ventil4" name="ventil4" checked="checked" />
+
+                <Label>Ventil 3</Label>
+                <input type="checkbox" id="ventil3" name="ventil3" checked="checked" />
+
+                <Label>Ventil 2</Label>
+                <input type="checkbox" id="ventil2" name="ventil2" checked="checked" />
+
+                <Label>Ventil 1</Label>
+                <input type="checkbox" id="ventil1" name="ventil1" checked="checked" />
+
+
+                <Label>Ventil 8</Label>
+                <input type="checkbox" id="ventil8" name="ventil8" checked="checked" />
 
                 <div class="form-group">
                     <button id="disablePump" class="btn btn-default" type="button">Disable Pump</button>
                 </div>
 
+
             </div>
         </div>
+        <script src="../static/js/jueke.js" th:src="@{/js/jueke.js}"></script>
+        <script>
+            $(document).ready(function () {
+                setInterval(getJuekeState, 100000);
+            });
+        </script>
     </div>
 
-    <script src="../static/js/jueke.js" th:src="@{/js/jueke.js}"></script>
 </div>
 </body>
 </html>

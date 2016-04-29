@@ -58,6 +58,7 @@ function updateGui(json) {
 
     $('#pumpState').removeClass('glyphicon glyphicon-ok-circle');
     $('#pumpState').removeClass('glyphicon glyphicon-ban-circle');
+
     if(json.statusOfPump === true){
         $('#pumpState').addClass('glyphicon glyphicon-ok-circle');
     }
@@ -73,12 +74,34 @@ $(function () {
     $('#disablePump').on("click", function () {
         $.post("/jueke/disablePump");
     });
-    $("[name='my-checkbox']").bootstrapSwitch();
-    $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-        if(state==true){
-            $.post("/jueke/valves/6/enable");
-        }else{
-            $.post("/jueke/valves/6/disable");
-        }
-    });
+    var ventil;
+    var juekevalves = "/jueke/valves";
+    var enable = "enable";
+    var disable = "disable";
+    var slash   =   "/";
+    var ventilno;
+    var ventilsteuern;
+
+    for (var i = 1; i <= 7; i++) {
+         ventil  = "ventil";
+        ventilno = i.toString();
+        console.log("Nummer:" + ventilno + "integer:" + i.toString());
+        $("input[name="+ventil+ventilno+"]").bootstrapSwitch();
+        console.log("vor on:" + ventil+ventilno);
+
+        $("input[name="+ventil+ventilno+"]").on('switchChange.bootstrapSwitch',
+            function (event, state) {
+
+            if (state == true) {
+                ventilsteuern = juekevalves + slash + ventilno + slash + enable;
+                $.post(ventilsteuern);
+
+                console.log('Ventilpost an:' + ventilsteuern);
+            } else {
+                ventilsteuern = juekevalves + slash + ventilno + slash + disable;
+                $.post(ventilsteuern);
+                console.log('Ventilpost aus:' + ventilsteuern);
+            }
+        });
+    }
 });
