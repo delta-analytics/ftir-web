@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html layout:decorator="index2" xmlns:layout="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <style type="text/css">
+        .h11 {
+            color: #5bc0de;
+            font-stretch: extra-expanded;
+            font-size: 28px;
+            font-weight: bolder;
+                    }
+        .wrapper {
+            display: grid;
+            grid-template-columns: 100px;
+            background-color: #fff;
+            color: #444;
+        }
+        .box {
+            background-color: #d0e9c6;
+            color: #9acfea;
+            border-radius: 5px;
+            font-size: 120%;
+        }
+        .heat {
+            grid-column: col / span 2;
+            grid-row-start: 5;
+            grid-row: row 12;
+        }
+    </style>
+</head>
 <body>
 <div layout:fragment="content">
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm-3 col-md-2 sidebar" th:include="jueke/leftNavigation">
+            <div class="col-sm-3 col-md-1 sidebar" th:include="jueke/leftNavigation">
 
             </div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-2"></div>
+                <div class="h11"> Jueke Settings</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"
+                 th:include="jueke/valveHeater">
 
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-                <h2 class="sub-header">Jueke Settings</h2>
-
-                <div> <Label>Ventil 7</Label>
-                <input type="checkbox" id="ventil7" name="ventil7" checked="" />
                 </div>
-
-                <div> <Label>Ventil 6</Label>
-                <input type="checkbox" id="ventil6" name="ventil6" checked="" />
+                <div class="col-md-3"
+                th:include="jueke/valveSven">
                 </div>
-
-                <Label>Ventil 5</Label>
-                <input type="checkbox" id="ventil5" name="ventil5" checked="checked" />
-
-
-                <Label>Ventil 4</Label>
-                <input type="checkbox" id="ventil4" name="ventil4" checked="checked" />
-
-                <Label>Ventil 3</Label>
-                <input type="checkbox" id="ventil3" name="ventil3" checked="checked" />
-
-                <Label>Ventil 2</Label>
-                <input type="checkbox" id="ventil2" name="ventil2" checked="checked" />
-
-                <Label>Ventil 1</Label>
-                <input type="checkbox" id="ventil1" name="ventil1" checked="checked" />
-
-
-                <Label>Ventil 8</Label>
-                <input type="checkbox" id="ventil8" name="ventil8" checked="checked" />
-
-                <div class="form-group">
-                    <button id="disablePump" class="btn btn-default" type="button">Disable Pump</button>
-                </div>
-
-
+            </div>
             </div>
         </div>
-        <script src="../static/js/jueke.js" th:src="@{/js/jueke.js}"></script>
     </div>
 
-</div>
 </body>
 </html>
