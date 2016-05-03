@@ -1,6 +1,6 @@
 package deltaanalytics.ftirweb.service;
 
-import deltaanalytics.ftirweb.dto.BrukerParametersDto;
+import deltaanalytics.ftirweb.dto.MutableBrukerParametersDto;
 import deltaanalytics.ftirweb.dto.MeasureSampleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,12 +40,12 @@ public class BrukerRestClient {
         return responseEntity.getBody();
     }
 
-    public BrukerParametersDto getActualDefaults() {
-        return restTemplate.getForObject(hostWithPort() + defaultParameterUrl, BrukerParametersDto.class);
+    public MutableBrukerParametersDto getActualDefaults() {
+        return restTemplate.getForObject(hostWithPort() + defaultParameterUrl, MutableBrukerParametersDto.class);
     }
 
-    public void setDefaults(BrukerParametersDto brukerParametersDto) {
-        restTemplate.postForLocation(hostWithPort() + defaultParameterUrl, brukerParametersDto);
+    public void setDefaults(MutableBrukerParametersDto mutableBrukerParametersDto) {
+        restTemplate.postForLocation(hostWithPort() + defaultParameterUrl, mutableBrukerParametersDto);
     }
 
     public String getVersion() {

@@ -1,6 +1,6 @@
 package deltaanalytics.ftirweb.controller;
 
-import deltaanalytics.ftirweb.dto.BrukerParametersDto;
+import deltaanalytics.ftirweb.dto.MutableBrukerParametersDto;
 import deltaanalytics.ftirweb.service.BrukerRestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.persistence.NoResultException;
 
 @Controller
 @RequestMapping("/bruker")
@@ -21,10 +19,11 @@ public class BrukerController {
     private BrukerRestClient brukerRestClient;
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("brukerVersion", brukerRestClient.getVersion());
         return "bruker/index";
     }
+
     @RequestMapping("/measurereference")
     public String measureReferences() {
         return "measurereference";
@@ -37,21 +36,14 @@ public class BrukerController {
     }
 
     @RequestMapping(value = "/parameter", method = RequestMethod.POST)
-    public String saveParameter(BrukerParametersDto brukerParameters) {
+    public String saveParameter(MutableBrukerParametersDto brukerParameters) {
         brukerRestClient.setDefaults(brukerParameters);
         return "redirect:/bruker/parameter";
     }
 
     @RequestMapping("/parameter")
     public String parameter(Model model) {
-        BrukerParametersDto brukerParameters;
-        try {
-            brukerParameters = brukerRestClient.getActualDefaults();
-        } catch (NoResultException e) {
-            brukerParameters = BrukerParametersDto.getDefault();
-            logger.error("", e);
-        }
-        model.addAttribute("brukerParameters", brukerParameters);
+        model.addAttribute("brukerParameters", brukerRestClient.getActualDefaults());
         return "bruker/parameter";
     }
 
