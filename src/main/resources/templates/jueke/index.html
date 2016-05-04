@@ -31,15 +31,18 @@
 <body>
 <div layout:fragment="content">
     <div class="container-fluid">
+
         <div class="row">
 
             <div class="col-sm-3 col-md-1 sidebar" th:include="jueke/leftNavigation">
 
             </div>
+
             <div class="row">
                 <div class="col-md-2 col-md-offset-2"></div>
                 <div class="h11"> Jueke Settings</div>
             </div>
+
             <div class="row">
                 <div class="col-md-3"
                  th:include="jueke/valveHeater">
@@ -48,10 +51,13 @@
                 <div class="col-md-3"
                 th:include="jueke/valveSven">
                 </div>
-            </div>
+
+                <div class="col-md-1"> <label> </label></div>
+                <div class="col-md-1"  th:include="jueke/valveone">
+                </div>
             </div>
         </div>
     </div>
-
+    </div>
 </body>
 </html>
