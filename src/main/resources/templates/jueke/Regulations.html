@@ -1,0 +1,90 @@
+<div class="form-group form-group-md" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="control-label ">
+        <div class="hred">Temperature Regulation</div>
+        </div>
+
+    <div class="boxtp tregula">
+        <div class="row">
+            <div class="col-md-4">
+        <label for="temperature">T(set):</label>
+                </div>
+
+      <input class="col-md-4" id="tempera" type="number"
+               min="0" max="100" step="1" value ="1" />
+
+            <div class="col-md-2">
+                <label><sup>0</sup>C</label>
+                </div>
+                </div>
+
+        <div class="row">
+            <label class="col-md-offset-4" id="tempactive">Active</label>
+        </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-1">
+    <form action="#" th:action="@{/jueke/temperature/{temperature}}" method="post">
+        <button id="temperature" class="btn btn-default" type="submit">Start</button>
+    </form>
+            </div>
+        <div class="col-md-offset-3 col-md-1">
+        <form action="#" th:action="@{/jueke/temperature/}" method="post">
+                <button  class="btn btn-default" type="submit">Stop</button>
+        </form>
+            </div>
+        </div>
+
+        </div>
+        <br> </br>
+
+        <div class="hblue">Pressure Regulation</div>
+    <div class="boxtp tregula">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="pressure">p(set):</label>
+            </div>
+
+            <input class="col-md-4" id="pressure" type="number"
+                   min="0" max="2000" step="10" value ="0" />
+
+            <div class="col-md-2">
+                <label>mbar</label>
+            </div>
+        </div>
+        <div class="row">
+        <label class="col-md-offset-4" id="pressactive">Active</label>
+            </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-1">
+                <form action="#" th:action="@{/jueke/pressureRegulationStart}" method="post">
+                    <button  class="btn btn-default" type="submit">Start</button>
+                </form>
+            </div>
+            <div class="col-md-offset-3 col-md-1">
+                <form action="#" th:action="@{/jueke/pressureRegulationStop}" method="post">
+                    <button  class="btn btn-default" type="submit">Stop</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br> </br>
+
+    <div class="form-group col-md-offset-4">
+        <button id="disablePump" class="btn btn-default" type="button">Disable Pump</button>
+    </div>
+    <div class="col-md-4">
+        <label class="hblue" for="pumppower">p(set):</label>
+    </div>
+
+    <input class="col-md-4" id="pumppower" type="number"
+           min="0" max="100" step="1" value ="0" />
+
+    <label class="col-md-2 hblue">
+        %</label>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        setInterval(getJuekeState, 1000);
+    });
+</script>
