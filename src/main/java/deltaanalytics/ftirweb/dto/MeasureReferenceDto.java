@@ -1,6 +1,5 @@
 package deltaanalytics.ftirweb.dto;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 public class MeasureReferenceDto {
@@ -12,8 +11,6 @@ public class MeasureReferenceDto {
     private BrukerStateEnumDto brukerStateEnum;
     private String error;
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -22,7 +19,6 @@ public class MeasureReferenceDto {
         this.id = id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public MutableBrukerParametersDto getBrukerParameters() {
         return brukerParameters;
     }
@@ -31,7 +27,6 @@ public class MeasureReferenceDto {
         this.brukerParameters = brukerParameters;
     }
 
-    @Column
     public LocalDateTime getFinishedAt() {
         return finishedAt;
     }
@@ -40,7 +35,6 @@ public class MeasureReferenceDto {
         this.finishedAt = finishedAt;
     }
 
-    @Column
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -57,19 +51,12 @@ public class MeasureReferenceDto {
         this.brukerStateEnum = brukerStateEnum;
     }
 
-    @Lob
-    @Column
     public String getError() {
         return error;
     }
 
     public void setError(String error) {
         this.error = error;
-    }
-
-    @PrePersist
-    public void prePersist() {
-        createdAt = LocalDateTime.now();
     }
 
     @Override
