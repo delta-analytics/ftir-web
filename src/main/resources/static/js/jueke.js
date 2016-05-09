@@ -8,12 +8,22 @@ function getJuekeState() {
     });
 }
 
-function getJuekeStateForSettings() {
+function updateJuekeStateForSettingsGuiInitial() {
     $.ajax({
         type: 'GET',
         url: '/jueke/status/',
         success: function (json) {
-            return json;
+            setSettingsGuiInitial(json);
+        }
+    });
+}
+
+function updateJuekeStateForSettingsGui() {
+    $.ajax({
+        type: 'GET',
+        url: '/jueke/status/',
+        success: function (json) {
+            setSettingsGui(json);
         }
     });
 }
@@ -81,6 +91,24 @@ function updateGui(json) {
     $('#temperatureState').text(json.actualTempHeater);
 }
 
+
+function setSettingsGui(json) {
+    $('#pumppowerActual').text("(" + json.pumpPower + ")");
+    $('#pressureState').text(json.actualPressureCell);
+    $('#temperatureState').text(json.actualTempHeater);
+}
+
+function setSettingsGuiInitial(json) {
+    var v6 = $('#ventil6');
+    if (json.valveStatus6 === true) {
+        v6.bootstrapSwitch('state', true);
+    }
+    else {
+        v6.bootstrapSwitch('state', false);
+    }
+    $('#pumppower').val(json.pumpPower);
+}
+
 $(function () {
     $('#disablePump').on("click", function () {
         $.post("/jueke/disablePump");
@@ -89,7 +117,6 @@ $(function () {
     var enable = "enable";
     var disable = "disable";
     var slash = "/";
-    var json = getJuekeStateForSettings();
 
     $("input[type=checkbox]").bootstrapSwitch();
 
@@ -105,5 +132,4 @@ $(function () {
             console.log(targetId);
             console.log(event);
         });
-    $('#ventil5').bootstrapSwitch('state', false);
 });
