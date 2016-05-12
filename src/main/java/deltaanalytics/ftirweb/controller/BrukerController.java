@@ -20,7 +20,7 @@ public class BrukerController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("brukerVersion", brukerRestClient.getVersion());
+        //model.addAttribute("brukerVersion", brukerRestClient.getVersion());
         return "bruker/index";
     }
 
@@ -31,7 +31,7 @@ public class BrukerController {
 
     @RequestMapping("/measuresamples")
     public String measureSamples(Model model) {
-        //model.addAttribute("allMeasurements", brukerRestClient.getMeasureSamples());
+        model.addAttribute("allMeasurements", brukerRestClient.getMeasureSamples());
         return "bruker/measurements";
     }
 

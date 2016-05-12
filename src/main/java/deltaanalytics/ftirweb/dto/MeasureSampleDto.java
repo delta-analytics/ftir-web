@@ -1,6 +1,5 @@
 package deltaanalytics.ftirweb.dto;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +11,10 @@ public class MeasureSampleDto {
     private MutableBrukerParametersDto brukerParameters;
     private LocalDateTime createdAt;
     private LocalDateTime finishedAt;
-    private BrukerStateEnumDto brukerStateEnumDto;
+    private BrukerStateEnumDto brukerStateEnum;
     private String filename;
     private String error;
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -30,7 +27,6 @@ public class MeasureSampleDto {
         this.measureSampleResults.add(measureSampleResult);
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<MeasureSampleResult> getMeasureSampleResults() {
         return measureSampleResults;
     }
@@ -39,7 +35,6 @@ public class MeasureSampleDto {
         this.measureSampleResults = measureSampleResults;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public MutableBrukerParametersDto getBrukerParameters() {
         return brukerParameters;
     }
@@ -48,7 +43,6 @@ public class MeasureSampleDto {
         this.brukerParameters = brukerParameters;
     }
 
-    @Column
     public LocalDateTime getFinishedAt() {
         return finishedAt;
     }
@@ -57,7 +51,6 @@ public class MeasureSampleDto {
         this.finishedAt = finishedAt;
     }
 
-    @Column
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -66,12 +59,12 @@ public class MeasureSampleDto {
         this.createdAt = createdAt;
     }
 
-    public BrukerStateEnumDto getBrukerStateEnumDto() {
-        return brukerStateEnumDto;
+    public BrukerStateEnumDto getBrukerStateEnum() {
+        return brukerStateEnum;
     }
 
-    public void setBrukerStateEnumDto(BrukerStateEnumDto brukerStateEnumDto) {
-        this.brukerStateEnumDto = brukerStateEnumDto;
+    public void setBrukerStateEnum(BrukerStateEnumDto brukerStateEnum) {
+        this.brukerStateEnum = brukerStateEnum;
     }
 
     public String getFilename() {
@@ -82,19 +75,12 @@ public class MeasureSampleDto {
         this.filename = filename;
     }
 
-    @Lob
-    @Column
     public String getError() {
         return error;
     }
 
     public void setError(String error) {
         this.error = error;
-    }
-
-    @PrePersist
-    public void prePersist() {
-        createdAt = LocalDateTime.now();
     }
 
     @Override
@@ -116,7 +102,7 @@ public class MeasureSampleDto {
                 ", brukerParameters=" + brukerParameters +
                 ", createdAt=" + createdAt +
                 ", finishedAt=" + finishedAt +
-                ", brukerStateEnum=" + brukerStateEnumDto +
+                ", brukerStateEnum=" + brukerStateEnum +
                 ", error='" + error + '\'' +
                 '}';
     }

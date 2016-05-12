@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 public class JuekeStatusDto {
     private long id;
-    @JsonIgnore
     private LocalDateTime statusDateTime;
     private byte start;
     private byte numberOfBytes;

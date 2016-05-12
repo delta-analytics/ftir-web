@@ -1,10 +1,6 @@
 package deltaanalytics.ftirweb.dto;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 public class MeasureSampleResult {
 
     private long id;
@@ -21,8 +17,6 @@ public class MeasureSampleResult {
         secondValue = Double.parseDouble(commaSplit[0].trim());
     }
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
@@ -47,7 +41,6 @@ public class MeasureSampleResult {
         this.secondValue = secondValue;
     }
 
-    @ManyToOne
     public MeasureSampleDto getMeasureSample() {
         return measureSample;
     }
