@@ -93,9 +93,11 @@ function updateGui(json) {
 
 
 function setSettingsGui(json) {
+
     $('#pumppowerActual').text("(" + json.pumpPower + ")");
     $('#pressureState').text(json.actualPressureCell);
     $('#temperatureState').text(json.actualTempHeater);
+
 }
 
 function setSettingsGuiInitial(json) {
@@ -107,12 +109,48 @@ function setSettingsGuiInitial(json) {
         v6.bootstrapSwitch('state', false);
     }
     $('#pumppower').val(json.pumpPower);
+
+    if (json.statusOfPump === true) {
+        if (json.pumpPower > 0) {
+            $('#pumpsymbol').addClass('greenpump');
+        } else {
+            $('#pumpsymbol').addClass('redpump');
+        }
+      } else {
+        $('#pumpsymbol').addClass('redpump');
+
+    }
+   //-- /pump/speed/{speed}
 }
 
 $(function () {
+
+    console.log("vor der Abfrage pumpe-disable");
+    $('#pumpsymbol').on("click", function () {
+        $('#pumpsymbol').removeClass('redpump');
+        $('#pumpsymbol').removeClass('greenpump');
+
+        $('#pumpsymbol').addClass('redpump');
+        console.log("pump-disable");
+        $.post("/jueke/pump/speed/" + 0);
+       // $.post("/jueke/disablePump");
+    });
+
     $('#disablePump').on("click", function () {
         $.post("/jueke/disablePump");
     });
+
+    $('#setpumpspeed').on("click", function () {
+        console.log("setpumpspeed: " );
+        
+        if ($('#pumppower').val() > 0) {
+            var speed = $('#pumppower').val();
+            var setspeed = "/jueke/pump/speed/" + speed;
+            $.post(setspeed);
+            $('#pumpsymbol').addClass('greenpump');
+        }
+    });
+
     var juekevalves = "/jueke/valves";
     var enable = "enable";
     var disable = "disable";
