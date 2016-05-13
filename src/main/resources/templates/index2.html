@@ -37,16 +37,16 @@
             <div class="col-sm-9 col-md-10 pull-left">
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"><a
-                                th:href="@{/}">Home</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}">
+                            <a th:href="@{/}">Home</a></li>
                         <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/bruker/') ? 'active':''}">
-                            <a
-                                    th:href="@{/bruker/}">Bruker</a></li>
-                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/jueke/') ? 'active':''}"><a
-                                th:href="@{/jueke/}">Jueke</a></li>
+                            <a th:href="@{/bruker/}">Bruker</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/jueke/') ? 'active':''}">
+                            <a th:href="@{/jueke/}">Jueke</a></li>
+                        <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/math/') ? 'active':''}">
+                            <a th:href="@{/math/}">Math</a></li>
                         <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/users') ? 'active':''}">
-                            <a
-                                    th:href="@{/users/users}">Users</a></li>
+                            <a th:href="@{/users/users}">Users</a></li>
                     </ul>
                 </div>
             </div>

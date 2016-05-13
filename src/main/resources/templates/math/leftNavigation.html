@@ -1,0 +1,8 @@
+<ul class="nav nav-sidebar">
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/math/' ? 'active':''}"><a
+            th:href="@{/math/}">Overview<span class="sr-only">(current)</span></a></li>
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/math/levenberg' ? 'active':''}"><a
+            th:href="@{/math/levenberg}">Levenberg Parameter<span class="sr-only">(current)</span></a></li>
+    <li th:classappend="${#httpServletRequest.getRequestURI() == '/math/hitran' ? 'active':''}"><a
+            th:href="@{/math/hitran}">Hitran Parameter<span class="sr-only">(current)</span></a></li>
+</ul>
