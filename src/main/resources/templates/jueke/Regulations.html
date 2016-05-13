@@ -1,12 +1,12 @@
 <div class="form-group form-group-md" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="control-label ">
-        <div class="hred">Temperature Regulation</div>
+        <div class="hred">Temperature Regulation NOT IN JUEKE-CLIENT!</div>
     </div>
 
     <div class="boxtp tregula">
         <div class="row">
             <div class="col-md-4">
-                <label for="temperature">T(set):</label>
+                <label for="tempera">T(set):</label>
             </div>
 
             <input class="col-md-4" id="tempera" type="number"
@@ -22,14 +22,14 @@
         </div>
         <div class="row">
             <div class="col-md-offset-2 col-md-1">
-                <form action="#" th:action="@{/jueke/pressureRegulationStart}" method="post">
-                    <button id="temperature" class="btn btn-default" type="submit">Start</button>
-                </form>
+
+                <button id="tempera-start" class="btn btn-default" type="button">Start</button>
             </div>
+
             <div class="col-md-offset-3 col-md-1">
-                <form action="#" th:action="@{/jueke/tpressureRegulationStop}" method="post">
-                    <button class="btn btn-default" type="submit">Stop</button>
-                </form>
+
+                <button id="tempera-stop" class="btn btn-default" type="button">Stop</button>
+
             </div>
         </div>
         <!-- Temerpatur setzen fehlt. Jede Änderung setzen ? -->
@@ -45,7 +45,7 @@
             </div>
 
             <input class="col-md-4" id="pressure" type="number"
-                   min="0" max="2000" step="10" value="0"/>
+                   min="900" max="2000" step="5" value="900"/>
 
             <div class="col-md-2">
                 <label>mbar</label>
@@ -56,24 +56,24 @@
         </div>
         <div class="row">
             <div class="col-md-offset-2 col-md-1">
-                <form action="#" th:action="@{/jueke/pressureRegulationStart}" method="post">
-                    <button class="btn btn-default" type="submit">Start</button>
-                </form>
+                <button id="pressure-start" class="btn btn-default" type="submit">Start</button>
             </div>
             <div class="col-md-offset-3 col-md-1">
-                <form action="#" th:action="@{/jueke/pressureRegulationStop}" method="post">
-                    <button class="btn btn-default" type="submit">Stop</button>
-                </form>
+                    <button id="pressure-stop" class="btn btn-default" type="submit">Stop</button>
             </div>
         </div>
     </div>
     <br> </br>
 
     <div class="form-group col-md-offset-4">
+        <img src="/img/71px-Symbol_Pressure_relief_valve.svg.png" style="height: 48px" width="58px"> </img>
+        <img src="/img/Symbol_Fluid-Filter.png" style="height: 48px" width="58px"> </img>
 
         <button type="button" class="btn  redpump" id="pumpsymbol" >
             <img src="/img/Pumpe-symbol-links.png" style="height: 30px" width="30px">  </img>
         </button>
+
+
 
 
     </div>
