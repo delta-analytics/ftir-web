@@ -31,4 +31,12 @@ public class MathRestClient {
     private String hostWithPort() {
         return host + ":" + port;
     }
+
+    public void setLevenbergMarquardtParameters(LevenbergMarquardtParameters levenbergMarquardtParameters) {
+        restTemplate.postForLocation(hostWithPort() + levenbergUrl, levenbergMarquardtParameters);
+    }
+
+    public void setHitranParameters(HitranParameters hitranParameters) {
+        restTemplate.postForLocation(hostWithPort() + hitranUrl, hitranParameters);
+    }
 }

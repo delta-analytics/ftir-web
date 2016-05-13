@@ -1,12 +1,15 @@
 package deltaanalytics.ftirweb.dto;
 
-/** ToDo get parameters from GUI
- *  base class for one molecule
- *  vector of initial parameters for vectors pin, dp, minValues and maxValues:  6 or 8 items
- *  nlCorr = false (parameter length 6)
- *  - offset, resolution, FOV, mixing ratio, baseline scale, wavenumber shift
- *  nlCorr = true (parameter length 8)
- *  - offset, resolution, FOV, mixing ratio, baseline scale, wavenumber shift, 2 polynomial constants... e.g. -1e-5; 1e-10;
+import java.util.Arrays;
+
+/**
+ * ToDo get parameters from GUI
+ * base class for one molecule
+ * vector of initial parameters for vectors pin, dp, minValues and maxValues:  6 or 8 items
+ * nlCorr = false (parameter length 6)
+ * - offset, resolution, FOV, mixing ratio, baseline scale, wavenumber shift
+ * nlCorr = true (parameter length 8)
+ * - offset, resolution, FOV, mixing ratio, baseline scale, wavenumber shift, 2 polynomial constants... e.g. -1e-5; 1e-10;
  */
 public class LevenbergMarquardtParameters {
     private int molecule;
@@ -18,14 +21,20 @@ public class LevenbergMarquardtParameters {
     private int niter;  // max number of iterations
     private boolean nlCorr;  // nonlinear correction for spectrum
 
-    public LevenbergMarquardtParameters(){}
+    public LevenbergMarquardtParameters() {
+        init();
+    }
 
-    public LevenbergMarquardtParameters(int molecule){
+    public LevenbergMarquardtParameters(int molecule) {
         this.molecule = molecule;
-        this.dp = new double[] {0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01};
-        this.pin = new double[] {1e-4, 1.0, 22.5*1e-3, 2e-6, 0.0, 0.0, -1e-5, 1e-10};
-        this.minValues = new double[] {-0.1, 0.5, 5*1e-3, 0.0, 0.0, -0.1, -1e-2, 0};
-        this.maxValues = new double[] { 0.1, 2.0, 40*1e-3, 1e-3, 1.0, 0.1, 0.0, 1e-2};
+        init();
+    }
+
+    private void init() {
+        this.dp = new double[]{0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01};
+        this.pin = new double[]{1e-4, 1.0, 22.5 * 1e-3, 2e-6, 0.0, 0.0, -1e-5, 1e-10};
+        this.minValues = new double[]{-0.1, 0.5, 5 * 1e-3, 0.0, 0.0, -0.1, -1e-2, 0};
+        this.maxValues = new double[]{0.1, 2.0, 40 * 1e-3, 1e-3, 1.0, 0.1, 0.0, 1e-2};
         this.stol = 1e-4;
         this.niter = 15;
         this.nlCorr = false;
@@ -95,4 +104,17 @@ public class LevenbergMarquardtParameters {
         this.molecule = molecule;
     }
 
+    @Override
+    public String toString() {
+        return "LevenbergMarquardtParameters{" +
+                "molecule=" + molecule +
+                ", dp=" + Arrays.toString(dp) +
+                ", pin=" + Arrays.toString(pin) +
+                ", minValues=" + Arrays.toString(minValues) +
+                ", maxValues=" + Arrays.toString(maxValues) +
+                ", stol=" + stol +
+                ", niter=" + niter +
+                ", nlCorr=" + nlCorr +
+                '}';
+    }
 }

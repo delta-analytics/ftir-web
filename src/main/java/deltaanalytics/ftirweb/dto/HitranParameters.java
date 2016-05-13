@@ -21,7 +21,6 @@ public class HitranParameters {
     private double Patm;  // default = 1 atm; total Pressure in ATM units
     private int[] Dd;  // default = 5; wings of each line in wavenumbers of cm-1
 
-    // @ToDo call GUI
     public HitranParameters(){
         this.callHitran = new boolean[] {false, false, false, false, false, false, false};
         this.lowWN = new double[] {3860, 3470, 2500, 2080, 2900, 3730, 2840};

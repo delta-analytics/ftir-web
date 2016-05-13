@@ -12,178 +12,150 @@
                 <h2 class="sub-header">Current/Active Hitran Parameters</h2>
 
                 <!--calculation-->
-                <form class="form-horizontal" th:action="@{/math/levenberg}" th:object="${hitran}" method="post">
+                <form class="form-horizontal" th:action="@{/math/hitran}" th:object="${hitran}" method="post">
                     <div class="form-group">
-                        <label for="inputApf" class="col-sm-2 control-label">APF</label>
+                        <label class="col-sm-2 control-label">callHitran</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputApf" placeholder="apf" th:field="*{APF}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPhr" class="col-sm-2 control-label">Phr</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPhr" placeholder="phr" th:field="*{PHR}"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputPhz" class="col-sm-2 control-label">Phz</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPhz" placeholder="phz" th:field="*{PHZ}"/>
+                            <label>1 <input type="checkbox" th:field="*{callHitran[0]}"/></label>
+                            <label>2 <input type="checkbox" th:field="*{callHitran[1]}"/></label>
+                            <label>3 <input type="checkbox" th:field="*{callHitran[2]}"/></label>
+                            <label>4 <input type="checkbox" th:field="*{callHitran[3]}"/></label>
+                            <label>5 <input type="checkbox" th:field="*{callHitran[4]}"/></label>
+                            <label>6 <input type="checkbox" th:field="*{callHitran[5]}"/></label>
+                            <label>7 <input type="checkbox" th:field="*{callHitran[6]}"/></label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputPlf" class="col-sm-2 control-label">PLF</label>
+                        <label class="col-sm-2 control-label">lowWN</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPlf" placeholder="plf" th:field="*{PLF}"/>
-                        </div>
-                    </div>
-
-                    <!-- experiment -->
-                    <div class="form-group">
-                        <label for="inputCnm" class="col-sm-2 control-label">CNM</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputCnm" placeholder="cnm" th:field="*{CNM}"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputExp" class="col-sm-2 control-label">EXP</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputExp" placeholder="exp" th:field="*{EXP}"/>
+                            <input type="text" th:field="*{lowWN[0]}"/>
+                            <input type="text" th:field="*{lowWN[1]}"/>
+                            <input type="text" th:field="*{lowWN[2]}"/>
+                            <input type="text" th:field="*{lowWN[3]}"/>
+                            <input type="text" th:field="*{lowWN[4]}"/>
+                            <input type="text" th:field="*{lowWN[5]}"/>
+                            <input type="text" th:field="*{lowWN[6]}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputHfq" class="col-sm-2 control-label">HFQ</label>
+                        <label class="col-sm-2 control-label">highWN</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputHfq" placeholder="hfq" th:field="*{HFQ}"/>
+                            <input type="text" th:field="*{highWN[0]}"/>
+                            <input type="text" th:field="*{highWN[1]}"/>
+                            <input type="text" th:field="*{highWN[2]}"/>
+                            <input type="text" th:field="*{highWN[3]}"/>
+                            <input type="text" th:field="*{highWN[4]}"/>
+                            <input type="text" th:field="*{highWN[5]}"/>
+                            <input type="text" th:field="*{highWN[6]}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputHfw" class="col-sm-2 control-label">HFW</label>
+                        <label class="col-sm-2 control-label">baselineStep</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputHfw" placeholder="hfw" th:field="*{HFW}"/>
+                            <input type="text" th:field="*{baselineStep[0]}"/>
+                            <input type="text" th:field="*{baselineStep[1]}"/>
+                            <input type="text" th:field="*{baselineStep[2]}"/>
+                            <input type="text" th:field="*{baselineStep[3]}"/>
+                            <input type="text" th:field="*{baselineStep[4]}"/>
+                            <input type="text" th:field="*{baselineStep[5]}"/>
+                            <input type="text" th:field="*{baselineStep[6]}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputNam" class="col-sm-2 control-label">NAM</label>
+                        <label class="col-sm-2 control-label">stp</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputNam" placeholder="nam" th:field="*{NAM}"/>
+                            <input type="text" th:field="*{stp[0]}"/>
+                            <input type="text" th:field="*{stp[1]}"/>
+                            <input type="text" th:field="*{stp[2]}"/>
+                            <input type="text" th:field="*{stp[3]}"/>
+                            <input type="text" th:field="*{stp[4]}"/>
+                            <input type="text" th:field="*{stp[5]}"/>
+                            <input type="text" th:field="*{stp[6]}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputNss" class="col-sm-2 control-label">NSS</label>
+                        <label class="col-sm-2 control-label">intensThres1</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputNss" placeholder="nss" th:field="*{NSS}"/>
+                            <input type="text" th:field="*{intensThres1}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputPTH" class="col-sm-2 control-label">PTH</label>
+                        <label class="col-sm-2 control-label">isotopo1</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPTH" placeholder="pth" th:field="*{PTH}"/>
+                            <input type="text" th:field="*{isotopo1}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputXpp" class="col-sm-2 control-label">XPP</label>
+                        <label class="col-sm-2 control-label">intensThres2</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputxpp" placeholder="xpp" th:field="*{XPP}"/>
-                        </div>
-                    </div>
-
-                    <!-- hardware-->
-                    <div class="form-group">
-                        <label for="inputAqm" class="col-sm-2 control-label">AQM</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputAqm" placeholder="aqm" th:field="*{AQM}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputApt" class="col-sm-2 control-label">APT</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputApt" placeholder="apt" th:field="*{APT}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputBms" class="col-sm-2 control-label">BMS</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputBms" placeholder="bms" th:field="*{BMS}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLfq" class="col-sm-2 control-label">LFQ</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputLfq" placeholder="lfq" th:field="*{LFQ}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLfw" class="col-sm-2 control-label">LFW</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputLfw" placeholder="lfw" th:field="*{LFW}"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputOpf" class="col-sm-2 control-label">OPF</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputOpf" placeholder="opf" th:field="*{OPF}"/>
-                        </div>
-                    </div>
-
-                    <!-- save-->
-
-                    <div class="form-group">
-                        <label for="inputDap" class="col-sm-2 control-label">DAP</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputDap" placeholder="dap" th:field="*{DAP}"/>
+                            <input type="text" th:field="*{intensThres2}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputDpa" class="col-sm-2 control-label">DPA</label>
+                        <label class="col-sm-2 control-label">isotopo2</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputDpa" placeholder="dpa" th:field="*{DPA}"/>
+                            <input type="text" th:field="*{isotopo2}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputDpo" class="col-sm-2 control-label">DPO</label>
+                        <label class="col-sm-2 control-label">sf</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputDpo" placeholder="dpo" th:field="*{DPO}"/>
+                            <input type="text" th:field="*{sf[0]}"/>
+                            <input type="text" th:field="*{sf[1]}"/>
+                            <input type="text" th:field="*{sf[2]}"/>
+                            <input type="text" th:field="*{sf[3]}"/>
+                            <input type="text" th:field="*{sf[4]}"/>
+                            <input type="text" th:field="*{sf[5]}"/>
+                            <input type="text" th:field="*{sf[6]}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputSan" class="col-sm-2 control-label">SAN</label>
+                        <label class="col-sm-2 control-label">temp</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSan" placeholder="san" th:field="*{SAN}"/>
+                            <input type="text" th:field="*{temp}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Patm</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{Patm}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Dd</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{Dd[0]}"/>
+                            <input type="text" th:field="*{Dd[1]}"/>
+                            <input type="text" th:field="*{Dd[2]}"/>
+                            <input type="text" th:field="*{Dd[3]}"/>
+                            <input type="text" th:field="*{Dd[4]}"/>
+                            <input type="text" th:field="*{Dd[5]}"/>
+                            <input type="text" th:field="*{Dd[6]}"/>
                         </div>
                     </div>
 
