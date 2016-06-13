@@ -1,0 +1,48 @@
+<table class="table table-hover" xmlns:th="http://www.w3.org/1999/xhtml">
+    <thead>
+    <tr>
+        <th>Molecule</th>
+        <th>[ppm]</th>
+        <th><sup>0</sup>/<sub>00</sub></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td scope="row">H<sub>2</sub>O</td>
+        <td>12.5 ppm</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td scope="row">CO<sub>2</sub></td>
+        <td>385.1 ppm</td>
+        <td>-8.5</td>
+    </tr>
+    <tr>
+        <td scope="row">N<sub>2</sub>O</td>
+        <td>1.06 ppm</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td scope="row">CO</td>
+        <td>1.99 ppm</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td scope="row">CH<sub>4</sub></td>
+        <td>2.05 ppm</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td scope="row">NO/NO<sub>2</sub></td>
+        <td>0.0 ppm</td>
+        <td>-</td>
+    </tr>
+    </tbody>
+</table>
+
+<div><label>Created at: </label> <span th:text="${measureSample.createdAt}"></span></div>
+<div><label>Finished at: </label> <span th:text="${measureSample.finishedAt}"></span></div>
+<div><label>State: </label> <span th:text="${measureSample.brukerStateEnum}"></span></div>
+<div><label>Filename:</label> <span th:text="${measureSample.filename}"></span></div>
+<div><label>ID:</label> <span th:text="${measureSample.id}"></span></div>
+
