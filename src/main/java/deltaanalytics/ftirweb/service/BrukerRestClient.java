@@ -1,7 +1,7 @@
 package deltaanalytics.ftirweb.service;
 
-import deltaanalytics.ftirweb.dto.MutableBrukerParametersDto;
 import deltaanalytics.ftirweb.dto.MeasureSampleDto;
+import deltaanalytics.ftirweb.dto.MutableBrukerParametersDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
