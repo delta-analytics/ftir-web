@@ -1,5 +1,7 @@
 package deltaanalytics.ftirweb.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDateTime;
 
 public class MeasureSampleDto {
@@ -12,6 +14,7 @@ public class MeasureSampleDto {
     private String error;
     private MoleculeResultsDto moleculeResultsDto;
 
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public MeasureSampleDto(long id, MutableBrukerParametersDto mutableBrukerParametersDto, LocalDateTime createdAt,
                             LocalDateTime finishedAt, BrukerStateEnumDto brukerStateEnumDto, String filename,
                             String error, MoleculeResultsDto moleculeResultsDto) {
