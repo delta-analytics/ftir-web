@@ -1,7 +1,9 @@
 package deltaanalytics.ftirweb.service;
 
-import deltaanalytics.ftirweb.dto.MutableBrukerParametersDto;
 import deltaanalytics.ftirweb.dto.MeasureSampleDto;
+import deltaanalytics.ftirweb.dto.MutableBrukerParametersDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Component
 public class BrukerRestClient {
+    private static final Logger logger = LoggerFactory.getLogger(BrukerRestClient.class);
     @Autowired
     private RestOperations restTemplate;
     @Value("${bruker-service.host}")
@@ -38,6 +41,12 @@ public class BrukerRestClient {
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<MeasureSampleDto>>() {
                 });
         return responseEntity.getBody();
+    }
+
+    public MeasureSampleDto getMeasureSample(Long measureSampleId) {
+        String request = hostWithPort() + measureSamplesUrl + "/" + measureSampleId;
+        logger.info(request);
+        return restTemplate.getForObject(request, MeasureSampleDto.class);
     }
 
     public MutableBrukerParametersDto getActualDefaults() {

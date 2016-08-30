@@ -24,6 +24,7 @@
                             <th>State</th>
                             <th>Filename</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,67 +33,31 @@
                             <td th:text="${measurement.finishedAt}"></td>
                             <td th:text="${measurement.brukerStateEnum}"></td>
                             <td th:text="${measurement.filename}"></td>
-                            <td><a id="editMeasurement1" type="button" data-toggle="modal"
-                                   class="glyphicon glyphicon-edit" data-target="#editMeasurementModal"
-                                   title="Edit"> </a></td>
+                            <td><a class="btn btn-default show-measurement"
+                                   th:attr="id=${'show_measurement_' + measurement.id}" type="button"
+                                   title="Show">Details </a></td>
+                            <td th:if="${measurement.brukerStateEnum == T(deltaanalytics.ftirweb.dto.BrukerStateEnumDto).FINISHED }">
+                                <a class="btn btn-default" th:attr="id=${'calculate_measurement_' + measurement.id}"
+                                   type="button"
+                                   title="Calculate">Calculate </a></td>
+                            <td th:if="${measurement.brukerStateEnum != T(deltaanalytics.ftirweb.dto.BrukerStateEnumDto).FINISHED }">
+                                <label> Calculation not possible </label></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="editMeasurementModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-
-            <div class="modal-dialog">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="gridSystemModalLabel">Measurement Details</h4>
+                        <h4 class="modal-title" id="myModalLabel">Measurement Details</h4>
                     </div>
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Molecule</th>
-                            <th>[ppm]</th>
-                            <th><sup>0</sup>/<sub>00</sub></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td scope="row">H<sub>2</sub>O</td>
-                            <td>12.5 ppm</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">CO<sub>2</sub></td>
-                            <td>385.1 ppm</td>
-                            <td>-8.5</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">N<sub>2</sub>O</td>
-                            <td>1.06 ppm</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">CO</td>
-                            <td>1.99 ppm</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">CH<sub>4</sub></td>
-                            <td>2.05 ppm</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">NO/NO<sub>2</sub></td>
-                            <td>0.0 ppm</td>
-                            <td>-</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="modal-body"> <!-- MODAL Content is in measureSampleModal.html-->
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
