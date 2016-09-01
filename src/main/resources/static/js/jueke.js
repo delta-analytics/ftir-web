@@ -112,25 +112,25 @@ function setSettingsGui(json,vno) {
         console.log("function: vor ventuil:" );
         val_boolean=valveStatus(json,vno);
         if (val_boolean === true) {
-        $(vnumber).removeClass('greenpump');
+        $(vnumber).removeClass('greenlight');
         $.post("/jueke/valves/" + vno + "/disable");
-        $(vnumber).addClass('redpump');
+        $(vnumber).addClass('redlight');
         console.log("function: true ");
          }
          else {
             console.log("function: false ");
             $.post("/jueke/valves/" + vno + "/enable");
-            $(vnumber).addClass('greenpump');
+            $(vnumber).addClass('greenlight');
         }
     });
 
 
     console.log("vor der Abfrage pumpe-disable");
     $('#pumpsymbol').on("click", function () {
-        $('#pumpsymbol').removeClass('redpump');
-        $('#pumpsymbol').removeClass('greenpump');
+        $('#pumpsymbol').removeClass('redlight');
+        $('#pumpsymbol').removeClass('greenlight');
 
-        $('#pumpsymbol').addClass('redpump');
+        $('#pumpsymbol').addClass('redlight');
         console.log("pump-disable");
         $.post("/jueke/pump/speed/" + 0);
         // $.post("/jueke/disablePump");
@@ -144,7 +144,7 @@ function setSettingsGui(json,vno) {
             var speed = $('#pumppower').val();
             var setspeed = "/jueke/pump/speed/" + speed;
             $.post(setspeed);
-            $('#pumpsymbol').addClass('greenpump');
+            $('#pumpsymbol').addClass('greenlight');
         }
     });
 
@@ -172,24 +172,24 @@ function setSettingsGuiInitial(json) {
         status = valveStatus(json, i);
 
         if (status === true) {
-            $(vnumber).removeClass('redpump');
-            $(vnumber).addClass('greenpump');
+            $(vnumber).removeClass('redlight');
+            $(vnumber).addClass('greenlight');
         } else {
-            $(vnumber).removeClass('greenpump');
-            $(vnumber).addClass('redpump');
+            $(vnumber).removeClass('greenlight');
+            $(vnumber).addClass('redlight');
         }
     }
 
     
     if (json.pressureRegulationActive === true) {
-        $('#pressactive').addClass('greenpump');
+        $('#pressactive').addClass('greenlight');
     } else {
-        $('#pressactive').addClass('redpump');
+        $('#pressactive').addClass('redlight');
     }
     if (json.heaterRegulationActive === true) {
-        $('#tempactive').addClass('greenpump');
+        $('#tempactive').addClass('greenlight');
     } else {
-        $('#tempactive').addClass('redpump');
+        $('#tempactive').addClass('redlight');
     }
 
 
@@ -199,12 +199,12 @@ function setSettingsGuiInitial(json) {
 
     if (json.statusOfPump === true) {
         if (json.pumpPower > 0) {
-            $('#pumpsymbol').addClass('greenpump');
+            $('#pumpsymbol').addClass('greenlight');
         } else {
-            $('#pumpsymbol').addClass('redpump');
+            $('#pumpsymbol').addClass('redlight');
         }
       } else {
-        $('#pumpsymbol').addClass('redpump');
+        $('#pumpsymbol').addClass('redlight');
 
     }
    //-- /pump/speed/{speed}
@@ -249,21 +249,21 @@ $(function () {
     $('#tempera-start').on("click", function () {
         var temperatur = $('#tempera').val();
         $.post("/jueke/temperature/" + temperatur);
-        $('#tempactive').addClass('greenpump');
+        $('#tempactive').addClass('greenlight');
         console.log("tempera-start" + temperatur);
 })
     $('#tempera-stop').on("click", function () {
         var temperatur = 0;
         $.post("/jueke/temperature/" + temperatur);
-        $('#tempactive').removeClass('greenpump');
-        $('#tempactive').addClass('redpump');
+        $('#tempactive').removeClass('greenlight');
+        $('#tempactive').addClass('redlight');
         console.log("tempera-stop" + temperatur);
     })
 
     $('#pressure-start').on("click", function () {
         var pressure_mbar = $('#pressure').val();
         $.post("/jueke/pressure/" + pressure_mbar);
-        $('#pressactive').addClass('greenpump');
+        $('#pressactive').addClass('greenlight');
         $.post("/jueke/pressureRegulationStart");
 
         console.log("Pressure Start" + pressure_mbar);
@@ -273,8 +273,8 @@ $(function () {
 
      //   $.post("jueke/setPressure/"+ pressure_mbar);
         $.post("/jueke/pressureRegulationStop");
-        $('#pressactive').removeClass('greenpump');
-        $('#pressactive').addClass('redpump');
+        $('#pressactive').removeClass('greenlight');
+        $('#pressactive').addClass('redlight');
         console.log("Pressure Stop");
     })
 
