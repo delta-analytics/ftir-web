@@ -3,6 +3,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <style type="text/css">
+        .row {
+            margin-right: 0px;
+            margin-left: 0px;
+        }
         .h11 {
             color: #5bc0de;
             font-stretch: extra-expanded;
@@ -37,8 +41,9 @@
 
         .heat {
             grid-column: col / span 2;
-            grid-row-start: 5;
-            grid-row: row 12;
+            grid-row-span:  10;
+            border-radius: 5px;
+            background-color: #2aabd2;
         }
 
         .boxtp {
@@ -58,11 +63,11 @@
             grid-row-end: 12;
         }
         .redpump {
-            background-color: red;
+            background-color: rgba(255, 21, 5, 0.81);
         }
 
         .greenpump {
-            background-color: green;
+            background-color: rgba(0, 169, 0, 0.81);
         }
     </style>
 </head>
@@ -85,16 +90,20 @@
                 <div class="col-md-3"
                      th:include="jueke/valveHeater">
                 </div>
-                <div class="col-md-3"
+                <div class="col-md-1"
                      th:include="jueke/valveSven">
                 </div>
-
-
-                <div class="col-md-1" th:include="jueke/valveOne">
+                <div class="col-md-1"
+                     th:include="jueke/airdryer">
+                </div>
+                <!--kommentar-->
+                    <div class="col-md-offset-1 col-md-1" th:include="jueke/valveOne">
                 </div>
 
-                <div class="col-md-1"><label> </label></div>
-                <div class="col-md-4" th:include="jueke/Regulations">
+                <div class="col-md-2" th:include="jueke/Nafion">
+                </div>
+
+                <div class="col-md-3" th:include="jueke/Regulations">
                 </div>
 
             </div>
@@ -103,8 +112,32 @@
     <script>
         $(document).ready(function () {
             updateJuekeStateForSettingsGuiInitial();
-            setInterval(updateJuekeStateForSettingsGui, 1000);
+           // setInterval(updateJuekeStateForSettingsGuiInitial, 1000);
+            setInterval(updateJuekeStateForSettingsGui, 6000);
+          //  updateJuekeStateForSettingsGui();
         });
+        $( "#valve7" ).click(function() {
+            updateJuekeStateForSettingsGui(7);
+        });
+        $( "#valve6" ).click(function() {
+            updateJuekeStateForSettingsGui(6);
+        });
+        $( "#valve5" ).click(function() {
+            updateJuekeStateForSettingsGui(5);
+        });
+        $( "#valve4" ).click(function() {
+            updateJuekeStateForSettingsGui(4);
+        });
+        $( "#valve3" ).click(function() {
+            updateJuekeStateForSettingsGui(3);
+        });
+        $( "#valve2" ).click(function() {
+            updateJuekeStateForSettingsGui(2);
+        });
+        $( "#valve1" ).click(function() {
+            updateJuekeStateForSettingsGui(1);
+        });
+
     </script>
 </div>
 
