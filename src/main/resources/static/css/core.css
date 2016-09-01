@@ -1,0 +1,48 @@
+
+body {
+    padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
+    padding-bottom: 60px;
+    background-color:  #f5f5f5;
+
+
+}
+
+.form-narrow {
+    box-sizing: border-box;
+    max-width: 50%;
+ /**   max-height: 800px;  **/
+
+    padding: 19px 29px 29px;
+    margin: auto auto auto;
+    background-origin: border-box;
+    width: 75%;
+    height: 50%;
+
+    border: 2px solid greenyellow;
+    float: inherit;
+
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+
+}
+.form-signin .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.c-header1 {
+    text-align: center;
+    font-size: 500% ;
+    font-family: SansSerif;
+    color: #dca7a7;
+}
+
+.c-header2 {
+    text-align: center;
+    font-size: 175%;
+    font-family: "Times New Roman";
+    color: #dca7a7;
+}
