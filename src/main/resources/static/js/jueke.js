@@ -33,7 +33,7 @@ function updateJuekeStateForSettingsGui(vno) {
 
 function updateGui(json) {
     
-    for (var i = 1; i <= 8; i++) {
+    for (var i = 1; i <= 7; i++) {
         $('#valve' + i + 'State').removeClass('glyphicon glyphicon-ok-circle');
         $('#valve' + i + 'State').removeClass('glyphicon glyphicon-ban-circle');
     }
@@ -157,11 +157,6 @@ function setSettingsGuiInitial(json) {
     $('#pressureState').text(json.actualPressureCell);
     $('#temperatureState').text(json.actualTempHeater);
 
-    $('#pressureState').text(json.actualPressureCell);
-    $('#temperatureState').text(json.actualTempHeater);
-
-
-
     console.log("Pruefventile: " );
     var valve_max = 7;
     var vnumber;
@@ -249,33 +244,32 @@ $(function () {
     $('#tempera-start').on("click", function () {
         var temperatur = $('#tempera').val();
         $.post("/jueke/temperature/" + temperatur);
+        $.post("/temperature/regulation/start");
+        $('#tempactive').removeClass('redlight');
         $('#tempactive').addClass('greenlight');
-        console.log("tempera-start" + temperatur);
+        console.log("temperature regulation start T=" + temperatur);
 })
     $('#tempera-stop').on("click", function () {
-        var temperatur = 0;
-        $.post("/jueke/temperature/" + temperatur);
+        $.post("/temperature/regulation/stop");
         $('#tempactive').removeClass('greenlight');
         $('#tempactive').addClass('redlight');
-        console.log("tempera-stop" + temperatur);
+        console.log("temperature regulation stop");
     })
 
     $('#pressure-start').on("click", function () {
         var pressure_mbar = $('#pressure').val();
         $.post("/jueke/pressure/" + pressure_mbar);
+        $.post("/jueke/pressure/regulation/start");
+        $('#pressactive').removeClass('redlight');
         $('#pressactive').addClass('greenlight');
-        $.post("/jueke/pressureRegulationStart");
-
-        console.log("Pressure Start" + pressure_mbar);
+        console.log("Pressure Regulation Start p=" + pressure_mbar);
     })
 
     $('#pressure-stop').on("click", function () {
-
-     //   $.post("jueke/setPressure/"+ pressure_mbar);
-        $.post("/jueke/pressureRegulationStop");
+        $.post("/jueke/pressure/regulation/stop");
         $('#pressactive').removeClass('greenlight');
         $('#pressactive').addClass('redlight');
-        console.log("Pressure Stop");
+        console.log("Pressure Regulation Stop");
     })
 
 

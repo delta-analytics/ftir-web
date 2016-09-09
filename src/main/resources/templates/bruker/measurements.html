@@ -33,12 +33,10 @@
                             <td th:text="${measurement.finishedAt}"></td>
                             <td th:text="${measurement.brukerStateEnum}"></td>
                             <td th:text="${measurement.filename}"></td>
-                            <td><a class="btn btn-default show-measurement"
-                                   th:attr="id=${'show_measurement_' + measurement.id}" type="button"
+                            <td><a class="btn btn-default show-measurement" th:attr="id=${'show_measurement_' + measurement.id}" type="button"
                                    title="Show">Details </a></td>
                             <td th:if="${measurement.brukerStateEnum == T(deltaanalytics.ftirweb.dto.BrukerStateEnumDto).FINISHED }">
-                                <a class="btn btn-default" th:attr="id=${'calculate_measurement_' + measurement.id}"
-                                   type="button"
+                                <a class="btn btn-default" th:attr="id=${'calculate_measurement_' + measurement.id}"  type="button"
                                    title="Calculate">Calculate </a></td>
                             <td th:if="${measurement.brukerStateEnum != T(deltaanalytics.ftirweb.dto.BrukerStateEnumDto).FINISHED }">
                                 <label> Calculation not possible </label></td>

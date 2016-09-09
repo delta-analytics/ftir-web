@@ -29,22 +29,21 @@ public class BrukerRestClient {
     private String versionUrl;
     @Value("${bruker-service.measureReference.url}")
     private String measureReferenceUrl;
-    @Value("${bruker-service.measureReferences.url}")
-    private String measureReferencesUrl;
-    @Value("${bruker-service.measureSample.url}")
+    @Value("${bruker-service.measureSample.url}") // start measurement
     private String measureSampleUrl;
-    @Value("${bruker-service.measureSamples.url}")
-    private String measureSamplesUrl;
+    @Value("${bruker-service.getMeasuredSamples.url}") // retrieve measurements -- one if ID supplied, all if without
+    private String getMeasuredSamplesUrl;
 
-    public List<MeasureSampleDto> getMeasureSamples() {
-        ResponseEntity<List<MeasureSampleDto>> responseEntity = restTemplate.exchange(hostWithPort() + measureSamplesUrl,
+    // ToDo restrict List to time period
+    public List<MeasureSampleDto> getMeasuredSamples() {
+        ResponseEntity<List<MeasureSampleDto>> responseEntity = restTemplate.exchange(hostWithPort() + getMeasuredSamplesUrl,
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<MeasureSampleDto>>() {
                 });
         return responseEntity.getBody();
     }
 
-    public MeasureSampleDto getMeasureSample(Long measureSampleId) {
-        String request = hostWithPort() + measureSamplesUrl + "/" + measureSampleId;
+    public MeasureSampleDto getMeasuredSample(Long measureSampleId) {
+        String request = hostWithPort() + getMeasuredSamplesUrl + "/" + measureSampleId;
         logger.info(request);
         return restTemplate.getForObject(request, MeasureSampleDto.class);
     }
@@ -63,6 +62,10 @@ public class BrukerRestClient {
 
     public void startMeasurement() {
         restTemplate.postForLocation(hostWithPort() + measureSampleUrl, Void.class);
+    }
+
+    public void startReference() {
+        restTemplate.postForLocation(hostWithPort() + measureReferenceUrl, Void.class);
     }
 
     private String hostWithPort() {

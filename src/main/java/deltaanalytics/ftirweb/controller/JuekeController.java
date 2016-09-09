@@ -86,6 +86,22 @@ public class JuekeController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/temperatureRegulationStart")
+    @ResponseBody
+    public ResponseEntity temperatureRegulationStart() {
+        logger.info("temperatureRegulationStart");
+        juekeRestClient.temperatureRegulationStart();
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/temperatureRegulationStop")
+    @ResponseBody
+    public ResponseEntity temperatureRegulationStop() {
+        logger.info("temperatureRegulationStop");
+        juekeRestClient.temperatureRegulationStop();
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/status")
     @ResponseBody
     public JuekeStatusDto getStatus() {

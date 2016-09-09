@@ -25,20 +25,15 @@ public class BrukerController {
         return "bruker/index";
     }
 
-    @RequestMapping("/measurereference")
-    public String measureReferences() {
-        return "measurereference";
-    }
-
-    @RequestMapping("/measuresamples")
-    public String measureSamples(Model model) {
-        model.addAttribute("allMeasurements", brukerRestClient.getMeasureSamples());
+    @RequestMapping("/getMeasuredSamples")
+    public String measuredSamples(Model model) {
+        model.addAttribute("allMeasurements", brukerRestClient.getMeasuredSamples());
         return "bruker/measurements";
     }
 
-    @RequestMapping("/measuresamples/{measureSampleId}")
-    public String measureSample(Model model, @PathVariable Long measureSampleId) {
-        model.addAttribute("measureSample", brukerRestClient.getMeasureSample(measureSampleId));
+    @RequestMapping("/getMeasuredSample/{measureSampleId}")
+    public String measuredSample(Model model, @PathVariable Long measureSampleId) {
+        model.addAttribute("getMeasuredSample", brukerRestClient.getMeasuredSample(measureSampleId));
         return "bruker/measureSampleModal";
     }
 
@@ -57,6 +52,12 @@ public class BrukerController {
     @RequestMapping(value = "/measurement/start", method = RequestMethod.POST)
     public String startMeasurement() {
         brukerRestClient.startMeasurement();
+        return "redirect:/bruker/measurements";
+    }
+
+    @RequestMapping(value = "/reference/start", method = RequestMethod.POST)
+    public String startReference() {
+        brukerRestClient.startReference();
         return "redirect:/bruker/measurements";
     }
 }

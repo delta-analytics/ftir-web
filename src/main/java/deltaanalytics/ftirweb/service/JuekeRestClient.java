@@ -24,6 +24,10 @@ public class JuekeRestClient {
     private String pumpSpeedUrl;
     @Value("${jueke-service.temperature.url}")
     private String temperatureUrl;
+    @Value("${jueke-service.temperature.regulation.start.url}")
+    private String temperatureRegulationStartUrl;
+    @Value("${jueke-service.temperature.regulation.stop.url}")
+    private String temperatureRegulationStopUrl;
     @Value("${jueke-service.pressure.regulation.start.url}")
     private String pressureRegulationStartUrl;
     @Value("${jueke-service.pressure.regulation.stop.url}")
@@ -47,6 +51,14 @@ public class JuekeRestClient {
 
     public void temperature(int temperature) {
         restTemplate.postForLocation(hostWithPort() + temperatureUrl + "/" + temperature, null);
+    }
+
+    public void temperatureRegulationStart() {
+        restTemplate.postForLocation(hostWithPort() + temperatureRegulationStartUrl, null);
+    }
+
+    public void temperatureRegulationStop() {
+        restTemplate.postForLocation(hostWithPort() + temperatureRegulationStopUrl, null);
     }
 
     public void pressureRegulationStart() {
