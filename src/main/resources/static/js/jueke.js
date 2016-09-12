@@ -157,7 +157,7 @@ function setSettingsGuiInitial(json) {
     $('#pressureState').text(json.actualPressureCell);
     $('#temperatureState').text(json.actualTempHeater);
 
-    console.log("Pruefventile: " );
+    console.info("Pruefventile: " );
     var valve_max = 7;
     var vnumber;
     var status;
@@ -282,16 +282,16 @@ $(function () {
     $( "#valve1" ).on("click", function(event, state) {
         event.preventDefault();
         console.info("input bei v1:" + $('input[type=button]').toString());
-        console.info("event:" + event);
+        console.info("event valve1:" + event.toString());
         console.info("state:" + state);
     });
 
-    $('input[type=button]').on("click", function (event) {
+    $('input[type=button]').on("click", function (event, state) {
         var sevent = event;
         console.info("sevent:" + sevent);
     });
-
-    $('input[type=button]').on('switchChange.bootstrapSwitch',
+  
+/*    $('input[type=button]').on('switchChange.bootstrapSwitch',
         function (event, state) {
             event.preventDefault();
             var targetId = juekevalves + slash + event.target.id.substring(6, 7);
@@ -302,5 +302,5 @@ $(function () {
             }
             console.info("target:" + targetId);
             console.info("event:" + event);
-        });
+        }); */
 });
