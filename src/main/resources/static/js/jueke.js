@@ -160,7 +160,7 @@ function setSettingsGuiInitial(json) {
     $('#pressureState').text(json.actualPressureCell);
     $('#temperatureState').text(json.actualTempHeater);
 
-    console.log("Pruefventile: " );
+    console.info("Pruefventile: " );
     var valve_max = 7;
     var vnumber;
     var status;
@@ -285,7 +285,7 @@ $(function () {
     $( "#valve1" ).on("click", function(event, state) {    // ToDo FJ why only valve 1 ?
         event.preventDefault();
         console.info("input bei v1:" + $('input[type=button]').toString());
-        console.info("event:" + event);
+        console.info("event valve1:" + event.toString());
         console.info("state:" + state);
     });
 
@@ -295,7 +295,7 @@ $(function () {
     });
 
     $('input[type=button]').on('switchChange.bootstrapSwitch',  // ToDo FJ what happens to pump button and regulation buttons ?
-        function (event, state) {
+        /*function (event, state) {
             event.preventDefault();   // FJ Cancel the default action (navigation) of the click
             var targetId = juekevalves + slash + event.target.id.substring(6, 7);
             if (state == true) {
@@ -305,5 +305,5 @@ $(function () {
             }
             console.info("target:" + targetId);
             console.info("event:" + event);
-        });
+        }); */
 });
