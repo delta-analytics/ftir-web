@@ -13,6 +13,8 @@
 
                 <h2 class="sub-header">Jueke Status</h2>
 
+                <!--  some of the below label id= has to go to anonymous / self invoking function() in jueke.js ?? -->
+
                 <div><label>Valve1</label> <label id="valve1State"></label></div>
                 <div><label>Valve2</label> <label id="valve2State"></label></div>
                 <div><label>Valve3</label> <label id="valve3State"></label></div>
@@ -20,17 +22,17 @@
                 <div><label>Valve5</label> <label id="valve5State"></label></div>
                 <div><label>Valve6</label> <label id="valve6State"></label></div>
                 <div><label>Valve7</label> <label id="valve7State"></label></div>
-                <div><label>Pump</label> <label id="pumpState"></label></div>
-                <div><label>Pump Speed</label> <label id="pumpSpeedState"></label></div>
-                <div><label>Pressure</label> <label id="pressureState"></label></div>
-                <div><label>Temperature</label> <label id="temperatureState"></label></div>
+                <div><label>Pump</label> <label id="pumpState"></label></div>    <!-- FJ called in UpdateGui of Jueke.js -->
+                <div><label>Pump Speed</label> <label id="pumpSpeedState"></label></div>  <!-- FJ called in setSettingsGuiInitial of Jueke.js  -->
+                <div><label>Pressure</label> <label id="pressureState"></label></div>   <!-- FJ called in setSettingsGuiInitial of Jueke.js  -->
+                <div><label>Temperature</label> <label id="temperatureState"></label></div>   <!-- FJ called in setSettingsGuiInitial of Jueke.js  -->
 
             </div>
         </div>
 
         <script>
             $(document).ready(function () {
-                setInterval(getJuekeState, 1000);
+                setInterval(getJuekeState, 1000);    <!-- getJuekeState is in jueke.js -->
             });
         </script>
     </div>

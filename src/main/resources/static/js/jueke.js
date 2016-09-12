@@ -23,7 +23,7 @@ function updateJuekeStateForSettingsGui(vno) {
         type: 'GET',
         url: '/jueke/status/',
         success: function (json) {
-            setSettingsGui(json,vno);
+            setSettingsGui(json,vno);  // ToDo FJ ajax call is GET, but on click in setSettingsGui makes POST
         }
     });
 }
@@ -31,7 +31,7 @@ function updateJuekeStateForSettingsGui(vno) {
 
 
 
-function updateGui(json) {
+function updateGui(json) {  // ToDo FJ also check pressure and temperature regulation active and some time in future temperature/heater reached/ok
     
     for (var i = 1; i <= 7; i++) {
         $('#valve' + i + 'State').removeClass('glyphicon glyphicon-ok-circle');
@@ -90,13 +90,16 @@ function updateGui(json) {
     else {
         $('#pumpState').addClass('glyphicon glyphicon-ban-circle');
     }
- //   $('#pumpSpeedState').text(json.pumpPower);
+    $('#pumpSpeedState').text(json.pumpPower);
 
+    // ToDo green and red for temperature / presuure active
+    //$('#pressactive')
+    //$('#tempactive')
     
 }
 
 
-function setSettingsGui(json,vno) {
+function setSettingsGui(json,vno) {  //  ToDo FJ ajax call is GET, but on click makes POST
     var on  =   'enable';
     var off =   'disable';
     var vnumber = "#valve" + vno;
@@ -237,8 +240,8 @@ function valveStatus (json,vno) {
 
 $(function () {
     console.info("Function fauncktion");
-    var on  =   'enable';
-    var off =   'disable';
+    var on  =   'enable';  // ToDo FJ not used ?
+    var off =   'disable';  // ToDo FJ not used ?
 
 
     $('#tempera-start').on("click", function () {
@@ -279,21 +282,21 @@ $(function () {
     var enable = "enable";
     var disable = "disable";
     var slash = "/";
-    $( "#valve1" ).on("click", function(event, state) {
+    $( "#valve1" ).on("click", function(event, state) {    // ToDo FJ why only valve 1 ?
         event.preventDefault();
         console.info("input bei v1:" + $('input[type=button]').toString());
         console.info("event:" + event);
         console.info("state:" + state);
     });
 
-    $('input[type=button]').on("click", function (event) {
+    $('input[type=button]').on("click", function (event) {   // ToDo FJ for which button is that action, for all buttons, just console info ?
         var sevent = event;
         console.info("sevent:" + sevent);
     });
 
-    $('input[type=button]').on('switchChange.bootstrapSwitch',
+    $('input[type=button]').on('switchChange.bootstrapSwitch',  // ToDo FJ what happens to pump button and regulation buttons ?
         function (event, state) {
-            event.preventDefault();
+            event.preventDefault();   // FJ Cancel the default action (navigation) of the click
             var targetId = juekevalves + slash + event.target.id.substring(6, 7);
             if (state == true) {
                 $.post(targetId + slash + enable);
