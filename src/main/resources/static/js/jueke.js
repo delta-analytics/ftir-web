@@ -32,14 +32,13 @@ function updateJuekeStateForSettingsGui(vno) {
 
 
 function updateGui(json) {  // ToDo FJ also check pressure and temperature regulation active and some time in future temperature/heater reached/ok
-    
+                            //TODO MD-F Part of markus
     for (var i = 1; i <= 7; i++) {
         $('#valve' + i + 'State').removeClass('glyphicon glyphicon-ok-circle');
         $('#valve' + i + 'State').removeClass('glyphicon glyphicon-ban-circle');
     }
     if (json.valveStatus1 === true) {
         $('#valve1State').addClass('glyphicon glyphicon-ok-circle');
-        console.log("JSON:" + json.valveStatus1);
     }
     else {
         $('#valve1State').addClass('glyphicon glyphicon-ban-circle');
@@ -277,7 +276,7 @@ $(function () {
 
 
 
-
+    // TODO MD-F A try to see what for kind of content into the variable erase
     var juekevalves = "/jueke/valves";
     var enable = "enable";
     var disable = "disable";
@@ -289,13 +288,15 @@ $(function () {
         console.info("state:" + state);
     });
 
+    // TODO MD-F A try to set a POST command erase
     $('input[type=button]').on("click", function (event) {   // ToDo FJ for which button is that action, for all buttons, just console info ?
         var sevent = event;
         console.info("sevent:" + sevent);
     });
 
-    $('input[type=button]').on('switchChange.bootstrapSwitch',  // ToDo FJ what happens to pump button and regulation buttons ?
-        /*function (event, state) {
+    // ToDO MD-F A try to set a POST command erase
+   /* $('input[type=button]').on('switchChange.bootstrapSwitch',  // ToDo FJ what happens to pump button and regulation buttons ?
+        function (event, state) {
             event.preventDefault();   // FJ Cancel the default action (navigation) of the click
             var targetId = juekevalves + slash + event.target.id.substring(6, 7);
             if (state == true) {
