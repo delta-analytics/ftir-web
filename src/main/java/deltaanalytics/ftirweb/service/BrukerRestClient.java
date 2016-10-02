@@ -27,7 +27,7 @@ public class BrukerRestClient {
     private String defaultParameterUrl;
     @Value("${bruker-service.version.url}")
     private String versionUrl;
-    @Value("${bruker-service.measureReference.url}")
+    @Value("${bruker-service.measureReference.url}")  // start reference measurement
     private String measureReferenceUrl;
     @Value("${bruker-service.measureSample.url}") // start measurement
     private String measureSampleUrl;

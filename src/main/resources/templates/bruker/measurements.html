@@ -11,7 +11,7 @@
 
                 <h2 class="sub-header">Measurements</h2>
 
-                <form action="#" th:action="@{/bruker/measurement/start}" method="post">
+                <form action="#" th:action="@{/bruker/measureSample}" method="post">   <!-- FJ BrukerController @RequestMappingg-String -->
                     <button id="startMeasurementBtn" class="btn btn-default" type="submit"> Start Measurement</button>
                 </form>
 
@@ -23,20 +23,24 @@
                             <th>Finished at</th>
                             <th>State</th>
                             <th>Filename</th>
+                            <th>ID</th>
                             <th></th>
                             <th></th>
                         </tr>
                         </thead>
+                        <!-- FJ BrukerController: model.addAttribute("allMeasurements", brukerRestClient.getMeasuredSamples()); -->
                         <tbody>
                         <tr th:each="measurement : ${allMeasurements}">
                             <td th:text="${measurement.createdAt}"></td>
                             <td th:text="${measurement.finishedAt}"></td>
                             <td th:text="${measurement.brukerStateEnum}"></td>
                             <td th:text="${measurement.filename}"></td>
-                            <td><a class="btn btn-default show-measurement" th:attr="id=${'show_measurement_' + measurement.id}" type="button"
+                            <td th:text="${measurement.id}"></td>
+
+                            <td><a class="btn btn-default" onclick="show-measurement" th:attr="id=${'show_measurement_' + measurement.id}" type="button"
                                    title="Show">Details </a></td>
                             <td th:if="${measurement.brukerStateEnum == T(deltaanalytics.ftirweb.dto.BrukerStateEnumDto).FINISHED }">
-                                <a class="btn btn-default" th:attr="id=${'calculate_measurement_' + measurement.id}"  type="button"
+                                <a class="btn btn-default calculate-measurement" th:attr="id=${'calculate_measurement_' + measurement.id}"  type="button"
                                    title="Calculate">Calculate </a></td>
                             <td th:if="${measurement.brukerStateEnum != T(deltaanalytics.ftirweb.dto.BrukerStateEnumDto).FINISHED }">
                                 <label> Calculation not possible </label></td>
@@ -54,7 +58,8 @@
                                 aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Measurement Details</h4>
                     </div>
-                    <div class="modal-body"> <!-- MODAL Content is in measureSampleModal.html-->
+                    <div class="modal-body">
+                        <!-- MODAL Content is in measureSampleModal.html which is called in BrukerController.java; the class modal-body is specified in bruker.js-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,6 +67,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 </body>

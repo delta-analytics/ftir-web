@@ -1,9 +1,13 @@
 package deltaanalytics.ftirweb.service;
 
-import deltaanalytics.ftirweb.dto.HitranParameters;
-import deltaanalytics.ftirweb.dto.LevenbergMarquardtParameters;
+import deltaanalytics.ftirweb.dto.HitranParametersDto;
+import deltaanalytics.ftirweb.dto.LevenbergMarquardtParametersDto;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 
@@ -20,23 +24,29 @@ public class MathRestClient {
     @Value("${math-service.hitran.url}")
     private String hitranUrl;
 
-    public LevenbergMarquardtParameters getLevenbergMarquardtParameters() {
-        return restTemplate.getForObject(hostWithPort() + levenbergUrl, LevenbergMarquardtParameters.class);
+    public List <LevenbergMarquardtParametersDto> getLevenbergMarquardtParameters() {
+        ResponseEntity<List<LevenbergMarquardtParametersDto>> responseEntity = restTemplate.exchange(hostWithPort() + levenbergUrl,
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<LevenbergMarquardtParametersDto>>() {
+                });
+        return responseEntity.getBody();
     }
 
-    public HitranParameters getHitranParameters() {
-        return restTemplate.getForObject(hostWithPort() + hitranUrl, HitranParameters.class);
+    public List <HitranParametersDto> getHitranParameters() {
+        ResponseEntity<List<HitranParametersDto>> responseEntity = restTemplate.exchange(hostWithPort() + hitranUrl,
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<HitranParametersDto>>() {
+                });
+        return responseEntity.getBody();
     }
 
     private String hostWithPort() {
         return host + ":" + port;
     }
 
-    public void setLevenbergMarquardtParameters(LevenbergMarquardtParameters levenbergMarquardtParameters) {
-        restTemplate.postForLocation(hostWithPort() + levenbergUrl, levenbergMarquardtParameters);
+    public void setLevenbergMarquardtParameters(LevenbergMarquardtParametersDto levenbergMarquardtParametersDto) {
+        restTemplate.postForLocation(hostWithPort() + levenbergUrl, levenbergMarquardtParametersDto);
     }
 
-    public void setHitranParameters(HitranParameters hitranParameters) {
-        restTemplate.postForLocation(hostWithPort() + hitranUrl, hitranParameters);
+    public void setHitranParameters(HitranParametersDto hitranParametersDto) {
+        restTemplate.postForLocation(hostWithPort() + hitranUrl, hitranParametersDto);
     }
 }

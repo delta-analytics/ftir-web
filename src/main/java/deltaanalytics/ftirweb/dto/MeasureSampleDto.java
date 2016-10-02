@@ -1,6 +1,7 @@
 package deltaanalytics.ftirweb.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ public class MeasureSampleDto {
     private String error;
     private MoleculeResultsDto moleculeResultsDto;
 
+/*    //FJ ToDo : will not run with this constructor, some json property issue missing @JsonProperty ??  may be @JsonIgnoreProperties(ignoreUnknown=true) ??
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public MeasureSampleDto(long id, MutableBrukerParametersDto mutableBrukerParametersDto, LocalDateTime createdAt,
                             LocalDateTime finishedAt, BrukerStateEnumDto brukerStateEnumDto, String filename,
@@ -26,7 +28,7 @@ public class MeasureSampleDto {
         this.filename = filename;
         this.error = error;
         this.moleculeResultsDto = moleculeResultsDto;
-    }
+    }*/
 
     public long getId() {
         return id;

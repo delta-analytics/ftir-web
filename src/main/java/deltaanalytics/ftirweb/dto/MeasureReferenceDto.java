@@ -15,9 +15,6 @@ public class MeasureReferenceDto {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public MutableBrukerParametersDto getBrukerParameters() {
         return brukerParameters;
@@ -31,33 +28,21 @@ public class MeasureReferenceDto {
         return finishedAt;
     }
 
-    public void setFinishedAt(LocalDateTime finishedAt) {
-        this.finishedAt = finishedAt;
-    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public BrukerStateEnumDto getBrukerStateEnum() {
         return brukerStateEnum;
     }
 
-    public void setBrukerStateEnum(BrukerStateEnumDto brukerStateEnum) {
-        this.brukerStateEnum = brukerStateEnum;
-    }
 
     public String getError() {
         return error;
     }
 
-    public void setError(String error) {
-        this.error = error;
-    }
 
     @Override
     public boolean equals(Object o) {

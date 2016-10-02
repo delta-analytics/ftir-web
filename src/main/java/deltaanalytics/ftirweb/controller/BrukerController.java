@@ -27,37 +27,43 @@ public class BrukerController {
 
     @RequestMapping("/getMeasuredSamples")
     public String measuredSamples(Model model) {
+        logger.info("ftir-web-service BrukerController /getMeasuredSamples");
         model.addAttribute("allMeasurements", brukerRestClient.getMeasuredSamples());
         return "bruker/measurements";
     }
 
-    @RequestMapping("/getMeasuredSample/{measureSampleId}")
+    @RequestMapping("/getMeasuredSamples/{measureSampleId}")
     public String measuredSample(Model model, @PathVariable Long measureSampleId) {
-        model.addAttribute("getMeasuredSample", brukerRestClient.getMeasuredSample(measureSampleId));
-        return "bruker/measureSampleModal";
+        logger.info("ftir-web-service BrukerController /getMeasuredSamples + ID");
+        model.addAttribute("getMeasuredSample", brukerRestClient.getMeasuredSample(measureSampleId));   // attribute used in measureSampleModal.html
+        return "bruker/measureSampleModal";   // FJ measureSampleModal.html
     }
 
     @RequestMapping(value = "/parameter", method = RequestMethod.POST)
     public String saveParameter(MutableBrukerParametersDto brukerParameters) {
+        logger.info("ftir-web-service BrukerController /parameter POST");
         brukerRestClient.setDefaults(brukerParameters);
         return "redirect:/bruker/parameter";
     }
 
     @RequestMapping("/parameter")
     public String parameter(Model model) {
-        model.addAttribute("brukerParameters", brukerRestClient.getActualDefaults());
-        return "bruker/parameter";
+        logger.info("ftir-web-service BrukerController /parameter GET");
+        model.addAttribute("brukerParameters", brukerRestClient.getActualDefaults());  // FJ getActualDefaults() fetches getCurrentDefaultTrue from bruker-service
+        return "bruker/parameter";  // FJ calls paramter.html from templates/bruker
     }
 
-    @RequestMapping(value = "/measurement/start", method = RequestMethod.POST)
+    @RequestMapping(value = "/measureSample", method = RequestMethod.POST)   // FJ same string in bruker-service !
     public String startMeasurement() {
+        logger.info("ftir-web-service BrukerController /measureSample");
         brukerRestClient.startMeasurement();
-        return "redirect:/bruker/measurements";
+        return "redirect:/bruker/measurements";  // measurements.html in templates folder
     }
 
-    @RequestMapping(value = "/reference/start", method = RequestMethod.POST)
+    @RequestMapping(value = "/measureReference", method = RequestMethod.POST)  // FJ same string in bruker-service !
     public String startReference() {
         brukerRestClient.startReference();
-        return "redirect:/bruker/measurements";
+        logger.info("ftir-web-service BrukerController /measureReference");
+        return "redirect:/bruker/measurements";  // measurements.html in templates folder
     }
 }

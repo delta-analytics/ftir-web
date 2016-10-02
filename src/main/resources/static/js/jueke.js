@@ -92,7 +92,7 @@ function updateGui(json) {  // ToDo FJ also check pressure and temperature regul
     }
     $('#pumpSpeedState').text(json.pumpPower);
 
-    // ToDo green and red for temperature / presuure active
+    // ToDo green and red for temperature / pressure active
     //$('#pressactive')
     //$('#tempactive')
     
@@ -251,7 +251,7 @@ $(function () {
         $('#tempactive').removeClass('redlight');
         $('#tempactive').addClass('greenlight');
         console.log("temperature regulation start T=" + temperatur);
-})
+    })
     $('#tempera-stop').on("click", function () {
         $.post("/temperature/regulation/stop");
         $('#tempactive').removeClass('greenlight');
